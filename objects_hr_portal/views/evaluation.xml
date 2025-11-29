@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  
+    <template id="objects_evaluation_id" name="Evaluation">
+        <t t-call="portal.portal_layout">
+            <script src="https://cdn.tailwindcss.com"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+              <div id="root">
+                <div class="flex min-h-screen w-full flex-col">
+                    <main class="odoo-content bg-gray-50 flex-grow">
+                      <div class="bg-white border-b">
+                          <div class="container py-4">
+                            <div class="flex items-center gap-2 text-sm">
+                                <a class="text-blue-600 hover:underline flex items-center gap-1" href="/">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left h-4 w-4">
+                                      <path d="m15 18-6-6 6-6"></path>
+                                  </svg>
+                                  Home
+                                </a>
+                                <span class="text-gray-400">/</span><span>Evaluation</span>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="container py-6">
+
+                          <div dir="ltr" data-orientation="horizontal" class="w-full">
+                            <div data-state="active" data-orientation="horizontal" role="tabpanel" aria-labelledby="radix-:r5:-trigger-attendance" id="radix-:r5:-content-attendance" tabindex="0" class="ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 mt-6" style="animation-duration: 0s;">
+                                <div class="flex gap-6 max-sm:flex-wrap">
+                                  <div class="w-3/4 max-sm:w-full">
+
+                                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                                            <h3 class="text-lg font-semibold mb-4">Evaluation Questions</h3>
+                                            <div class="space-y-4 w-full">
+                                                <div class="w-full">
+                                                    <div class="mb-2 w-full">
+                                                        <div class="w-full flex items-center justify-between">
+                                                            <span class="text-sm">
+                                                                <a href="/objects/evaluation/questions" class="text-sm">View All</a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                    </main>
+                </div>
+              </div>   
+        </t>
+    </template>
+
+
+
+
+    <template id="objects_evaluation_questions_id" name="Evaluation">
+        <t t-call="portal.portal_layout">
+            <script src="https://cdn.tailwindcss.com"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+              <div id="root">
+                <div class="flex min-h-screen w-full flex-col">
+                    <main class="odoo-content bg-gray-50 flex-grow">
+                      <div class="bg-white border-b">
+                          <div class="container py-4">
+                            <div class="flex items-center gap-2 text-sm">
+                                <a class="text-blue-600 hover:underline flex items-center gap-1" href="/">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left h-4 w-4">
+                                      <path d="m15 18-6-6 6-6"></path>
+                                  </svg>
+                                  Home
+                                </a>
+                                <a class="text-blue-600 hover:underline flex items-center gap-1" href="/objects/evaluation">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left h-4 w-4">
+                                      <path d="m15 18-6-6 6-6"></path>
+                                  </svg>
+                                  Home
+                                </a>
+                                <span class="text-gray-400">/</span><span>Evaluation Questions</span>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="container py-6">
+
+                          <div dir="ltr" data-orientation="horizontal" class="w-full">
+                            <div data-state="active" data-orientation="horizontal" role="tabpanel" aria-labelledby="radix-:r5:-trigger-attendance" id="radix-:r5:-content-attendance" tabindex="0" class="ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 mt-6" style="animation-duration: 0s;">
+
+                      <div class="flex min-h-screen" id="evaluation">
+                          <!-- Sidebar -->
+                          <aside class="w-72 bg-white border-r border-gray-200 p-6">
+                            <h2 class="text-lg font-bold mb-4">Required Reviews</h2>
+
+                            <div class="mb-6">
+                              <p class="text-sm text-blue-600 font-semibold mb-2 uppercase">Manager Review</p>
+                              <ul class="space-y-3">
+                                
+                                <t t-if="3 in participants" t-foreach="participants[3]" t-as="participant" t-key="participant['token']">
+                                      <li t-att-data-attr="participant['attribute_1']" class="flex items-center gap-3 list-item-click hover:cursor-pointer" data-type="Manager Review" t-att-data-token="participant['token']" t-att-data-sid="participant['sid']">
+                                        <!-- <img src="https://via.placeholder.com/40" alt="Michael" class="rounded-full w-10 h-10" /> -->
+                                        <div t-att-data-attr="participant['attribute_1']" t-att-data-token="participant['token']" t-att-data-sid="participant['sid']" class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-medium"><t t-esc="participant['attribute_1'][0].upper()+' '+participant['attribute_1'][1].upper()"/></div>
+                                        <div t-att-data-attr="participant['attribute_1']" t-att-data-token="participant['token']" t-att-data-sid="participant['sid']">
+                                          <p t-att-data-attr="participant['attribute_1']" t-att-data-token="participant['token']" t-att-data-sid="participant['sid']" class="font-semibold"><t t-esc="participant['attribute_1']"/></p>
+                                          <!-- <p class="text-sm text-gray-500">Software Engineer</p> -->
+                                        </div>
+                                      </li>                                    
+                                </t>
+
+                              </ul>
+                            </div>
+
+                            <div>
+                              <p class="text-sm text-green-600 font-semibold mb-2 uppercase">Multi Rater Review</p>
+                              <ul class="space-y-3">
+
+                                <t t-if="4 in participants" t-foreach="participants[4]" t-as="participant" t-key="participant['token']" t-att-data-token="participant['token']" t-att-data-sid="participant['sid']">
+
+                                      <li t-att-data-attr="participant['attribute_1']" class="flex items-center gap-3 list-item-click hover:cursor-pointer" data-type="Multi Rater Review" t-att-data-token="participant['token']" t-att-data-sid="participant['sid']">
+                                        <!-- <img src="https://via.placeholder.com/40" alt="Natalie" class="rounded-full w-10 h-10" /> -->
+                                        <div t-att-data-attr="participant['attribute_1']" t-att-data-token="participant['token']" t-att-data-sid="participant['sid']" class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-medium"><t t-esc="participant['attribute_1'][0].upper()+' '+participant['attribute_1'][1].upper()"/></div>
+                                        <div t-att-data-attr="participant['attribute_1']" t-att-data-token="participant['token']" t-att-data-sid="participant['sid']">
+                                          <p t-att-data-attr="participant['attribute_1']" t-att-data-token="participant['token']" t-att-data-sid="participant['sid']" class="font-semibold"><t t-esc="participant['attribute_1']"/></p>
+                                          <!-- <p class="text-sm text-gray-500">UX Designer</p> -->
+                                        </div>
+                                      </li>
+                                </t>
+
+                              </ul>
+                            </div>
+                          </aside>
+
+                          <!-- Main Content -->
+                          <main class="flex-1 p-10" id="iframe_container">
+                            <div class="flex items-center gap-4 mb-6 hidden" id="middle-frame">
+                              <!-- <img src="https://via.placeholder.com/60" alt="Michael" class="rounded-full w-16 h-16" /> -->
+                              <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-medium" id="middle-symbol">NA</div>
+                              <div>
+                                <h1 class="text-2xl font-bold" id="header_name">Michael Adams</h1>
+                                <p class="text-blue-600 text-sm font-semibold" id="header_position">Manager Review</p>
+                              </div>
+                              <!-- <button class="ml-auto text-sm text-gray-500 hover:underline">Resume later</button> -->
+                            </div>
+
+
+                              <!-- <iframe t-att-src="'http://'+host+'/index.php'" class="w-full h-full border-0 hidden" id="frame_preview"></iframe> -->
+
+
+                          </main>
+                        </div>
+
+
+
+
+                            </div>
+                          </div>
+                      </div>
+                    </main>
+                </div>
+              </div>   
+        </t>
+    </template>    
+
+
+</odoo>

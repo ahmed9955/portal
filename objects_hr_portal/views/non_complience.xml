@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="none_compliences_view_tree" model="ir.ui.view">
+    <field name="name">none.compliences.view.tree</field>
+    <field name="model">none.compliences</field>
+    <field name="arch" type="xml">
+      <tree string="None Complience" editable="bottom">
+          <field name="title" />
+          <field name="description" />
+          <field name="employee_id"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="none_compliences_action" model="ir.actions.act_window">
+    <field name="name">None Complience</field>
+    <field name="res_model">none.compliences</field>
+    <field name="view_mode">tree</field>
+  </record>
+
+
+
+
+  <record id="none_compliences_category_view_tree" model="ir.ui.view">
+    <field name="name">none.compliences.category.view.tree</field>
+    <field name="model">none.compliences.category</field>
+    <field name="arch" type="xml">
+      <tree string="None Complience" editable="bottom">
+          <field name="name" />
+      </tree>
+    </field>
+  </record>
+
+  <record id="none_compliences_category_action" model="ir.actions.act_window">
+    <field name="name">None Complience</field>
+    <field name="res_model">none.compliences.category</field>
+    <field name="view_mode">tree</field>
+  </record>
+
+
+
+  <record id="none_compliences_status_view_tree" model="ir.ui.view">
+    <field name="name">none.compliences.status.view.tree</field>
+    <field name="model">none.compliences.status</field>
+    <field name="arch" type="xml">
+      <tree string="None Complience" editable="bottom">
+          <field name="name" />
+      </tree>
+    </field>
+  </record>
+
+  <record id="none_compliences_status_action" model="ir.actions.act_window">
+    <field name="name">None Complience</field>
+    <field name="res_model">none.compliences.status</field>
+    <field name="view_mode">tree</field>
+  </record>
+
+
+  <menuitem
+    id="none_complience_menu"
+    name="None Complience"
+    action="none_compliences_action"
+    sequence="10"
+  />
+
+
+  <menuitem
+    id="none_complience_category_menu"
+    name="None Complience Category"
+    action="none_compliences_category_action"
+    sequence="10"
+    parent="none_complience_menu"
+  />
+
+  <menuitem
+    id="none_complience_status_menu"
+    name="None Complience Status"
+    action="none_compliences_status_action"
+    sequence="10"
+    parent="none_complience_menu"
+  />
+
+</odoo>

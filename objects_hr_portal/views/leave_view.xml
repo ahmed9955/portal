@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="inherit_hr_leave_view_form_manager" model="ir.ui.view">
+    <field name="name">hr.leave.view.form.inherit</field>
+    <field name="model">hr.leave</field>
+    <field name="inherit_id" ref="hr_holidays.hr_leave_view_form_manager"/>
+    <field name="arch" type="xml">
+      <xpath expr="//form" position="inside">
+          <field name="is_header_visible" invisible="1"/>
+      </xpath>
+      <xpath expr="//button[@name='action_approve']" position="attributes">
+          <attribute name="attrs">{'invisible': ['|','|', '|', '|', ('is_header_visible','=',False),('id', '=', False), ('active', '=', False), ('can_approve', '=', False), ('state', '!=', 'confirm')]}</attribute>
+      </xpath>
+
+      <xpath expr="//button[@name='action_refuse']" position="attributes">
+          <attribute name="attrs">{'invisible': ['|', '|', '|','|', ('is_header_visible','=',False), ('id', '=', False), ('active', '=', False), ('can_approve', '=', False), ('state', 'not in', ('confirm','validate1','validate'))]}</attribute>
+      </xpath>
+
+      <xpath expr="//button[@name='action_draft']" position="attributes">
+          <attribute name="attrs">{'invisible': ['|', '|', '|', ('is_header_visible','=',False), ('id', '=', False), ('can_reset', '=', False), ('state', 'not in', ['confirm', 'refuse'])]}</attribute>
+      </xpath>
+
+      <xpath expr="//sheet" position="inside">
+        <notebook>
+          <page name="name" string="Pre Requests">
+            <field name="pre_leave_request_ids">
+              <tree editable="buttom" create="0">
+                  <field name="employee_id"/>
+                  <field name="manager_id"/>
+                  <field name="project_id"/>
+                  <field name="state" widget="badge"/>
+                  <button confirm="Are you sure to Approve?" string="Approve" name="action_approve" type="object" class="oe_highlight" attrs="{'invisible': [('state','!=','draft')]}"/>
+                  <button confirm="Are you sure to Reject?" string="Reject" name="action_reject" type="object" class="oe_highlight" attrs="{'invisible': [('state','!=','draft')]}"/>
+              </tree>
+            </field>
+          </page>
+        </notebook>
+      </xpath>      
+    </field>
+  </record>
+
+</odoo>

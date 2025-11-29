@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  
+
+    
+
+    <data noupdate="1">
+
+
+        <record id="default_attendance_config" model="attendance.conf">
+          <field name="check_in_hour">8</field>
+          <field name="maximum_check_in_hour">10</field>
+        </record>
+
+
+        <record id="default_ip_config_1" model="ip.conf">
+          <field name="ip">41.38.0.234</field>
+        </record>
+
+        <record id="default_ip_config_2" model="ip.conf">
+          <field name="ip">41.38.0.233</field>
+        </record>
+
+        <record id="default_ip_config_3" model="ip.conf">
+          <field name="ip">41.129.149.96</field>
+        </record>
+
+        <record id="default_ip_config_4" model="ip.conf">
+          <field name="ip">41.38.0.135</field>
+        </record>
+
+        <record id="default_ip_config_5" model="ip.conf">
+          <field name="ip">41.38.6.75</field>
+        </record>
+
+
+        <record id="change_pass_email_action_server" model="ir.actions.server">
+            <field name="name">Change Password And Send email</field>
+            <field name="model_id" ref="base.model_res_users"/>
+            <field name="binding_model_id" ref="base.model_res_users"/>
+            <field name="state">code</field>
+            <field name="code">
+                for record in records:
+                    record.change_pass_and_send_mail()
+            </field>
+        </record>        
+
+
+        <record id="cron_monthly_25th" model="ir.cron">
+            <field name="name">Monthly Work From Home - 25th</field>
+            <field name="model_id" ref="hr_holidays.model_hr_leave_allocation"/>
+            <field name="state">code</field>
+            <field name="code">model.create_monthly_allocations()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <field name="active">False</field>
+            <field name="priority">1</field>
+            <field name="nextcall" eval="DateTime.now().now().replace(day=25, hour=20, minute=30, second=0).strftime('%Y-%m-%d %H:%M:%S')"/>
+        </record>
+
+
+
+        <record id="cron_daily_checkout" model="ir.cron">
+            <field name="name">Daily Checkout</field>
+            <field name="model_id" ref="hr_attendance.model_hr_attendance"/>
+            <field name="state">code</field>
+            <field name="code">model.auto_checkout()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="active">True</field>
+            <field name="priority">1</field>
+            <field name="nextcall" eval="(DateTime.now().now() + timedelta(days=1)).replace(hour=20, minute=0, second=0, microsecond=0)"/>
+        </record>
+
+
+
+        <record id="anuual_leave_type_id" model="hr.leave.type">
+            <field name="name">Annual Leave</field>
+            <field name="requires_allocation">yes</field>
+            <field name="leave_validation_type">both</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_validation_type">officer</field>
+        </record>
+
+
+
+        <record id="compensatory_leave_type_id" model="hr.leave.type">
+            <field name="name">contingent Leave</field>
+            <field name="leave_validation_type">both</field>            
+            <field name="requires_allocation">yes</field>      
+            <field name="allocation_validation_type">officer</field>
+            <field name="request_unit">day</field>
+        </record>
+
+
+        <record id="work_from_home_type_id" model="hr.leave.type">
+            <field name="name">Work From Home</field>
+            <field name="leave_validation_type">both</field>            
+            <field name="requires_allocation">yes</field>      
+            <field name="allocation_validation_type">officer</field>
+            <field name="request_unit">day</field>
+        </record>
+
+    
+    </data>
+    
+    <!-- <data noupdate="1">
+
+
+
+        <record id="portal_attendance_page" model="website.page">
+            <field name="is_published">True</field>
+            <field name="url">/objects/hr/attendance</field>
+            <field name="view_id" ref="website.homepage"/>
+            <field name="track">True</field>
+            <field name="website_meta_description">This is the homepage of the website</field>
+        </record>
+
+
+        <record id="portal_leave_page" model="website.page">
+            <field name="is_published">True</field>
+            <field name="url">/objects/hr/leave</field>
+            <field name="view_id" ref="website.homepage"/>
+            <field name="track">True</field>
+            <field name="website_meta_description">This is the homepage of the website</field>
+        </record>
+
+
+        <record id="portal_attenance_menu" model="website.menu">
+            <field name="name">Attendance</field>
+            <field name="url">/objects/hr/attendance</field>
+            <field name="page_id" ref="objects_hr_portal.portal_attendance_page"/>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">11</field>
+        </record>
+        
+
+        <record id="portal_leave_menu" model="website.menu">
+            <field name="name">Leave</field>
+            <field name="url">/objects/hr/leave</field>
+            <field name="page_id" ref="objects_hr_portal.portal_leave_page"/>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">12</field>
+        </record>
+
+
+    </data> -->
+</odoo>

@@ -1,0 +1,353 @@
+<odoo>
+    <template id="objects_leave_portal_id" name="Leaves">
+        <t t-call="portal.portal_layout">
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-gauge@4.0.0/dist/chartjs-chart-gauge.min.js"></script>
+
+        <div id="root">
+          <div class="flex min-h-screen w-full flex-col">
+              <main class="odoo-content bg-gray-50 flex-grow">
+                <div class="bg-white border-b">
+                    <div class="container py-4">
+                      <div class="flex items-center gap-2 text-sm">
+                          <a class="text-blue-600 hover:underline flex items-center gap-1" href="/">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left h-4 w-4">
+                                <path d="m15 18-6-6 6-6"></path>
+                            </svg>
+                            Home
+                          </a>
+                          <a class="text-blue-600 hover:underline flex items-center gap-1" href="/objects/hr/leave">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left h-4 w-4">
+                                <path d="m15 18-6-6 6-6"></path>
+                            </svg>
+                            My Leaves
+                          </a>
+                      </div>
+                    </div>
+                </div>
+                <div class="container py-6">
+
+                    <a href="/objects/leave/create/view"><button class="mb-3 btn btn-primary text-white text-bold"><i class="fa fa-plus p-r-2"/> Create Leave</button></a>               
+                    
+
+                    <div class="flex gap-6 mb-8 max-sm:flex-col max-sm:w-full">
+
+                      <div class="w-2/5 max-sm:w-full">
+                          <div class="rounded-xl border bg-card text-card-foreground shadow">
+                            <div class="flex flex-col space-y-1.5 p-6">
+                                <h3 class="font-semibold leading-none tracking-tight">Leave History</h3>
+                            </div>
+                            <div class="p-6 pt-0">
+                                <div class="h-[200px]">
+
+
+                                  <canvas id="stackedBarChart" width="600" height="300"></canvas>
+                                  <input type="hidden" id="entries_per_month" t-att-value="entries_per_month"/>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+
+
+                      <div class="w-3/5 grid grid-cols-3 gap-4 max-sm:grid-cols-1 max-sm:w-full">
+                          <t t-set="i" t-value="1"/>
+                          <div t-foreach="entries" t-as="entry" t-key="entry['id']" class="rounded-xl border bg-card text-card-foreground shadow">
+                            <div class="p-6 flex flex-row items-center justify-between space-y-0 pb-2">
+                                <h3 class="tracking-tight text-sm font-medium"><t t-esc="entry['name']"/></h3>
+                            </div>
+                            <div class="p-6 pt-0">
+                                <div class="text-2xl font-bold">
+                                  <t t-if="entry['rest'] != 0">
+                                      <t t-esc="entry['rest']"/>                                    
+                                  </t>
+                                  <t t-else="">
+                                      <t t-esc="entry['allocated']"/>
+                                  </t>
+                                </div>
+                                <p class="text-xs text-muted-foreground">Remaining balance</p>
+                                <div class="mt-4">
+                                  <div id="annual-gauge">
+                                      <canvas t-if="i == 1" id="doughnutChart" class="w-700 h-700"></canvas>
+                                      <canvas t-if="i != 1" t-att-id="'doughnutChart'+str(i)" class="w-700 h-700"></canvas>
+                                  </div>
+                                  <p class="text-xs text-center text-muted-foreground mt-2">Used <t t-esc="entry['taken']"/> of <t t-esc="entry['allocated']"/> days</p>
+                                </div>
+                            </div>
+
+                            <div class="hidden"  t-att-id="'entry-allocated-'+str(i)" t-esc="entry['allocated']"/>
+                            <div class="hidden"  t-att-id="'entry-taken-'+str(i)" t-esc="entry['taken']"/>
+
+                            <t t-set="i" t-value="i + 1"/>
+                          </div>
+
+                      </div>
+                    </div>
+                    <div class="rounded-xl border bg-card text-card-foreground shadow">
+                      <div class="flex flex-col space-y-1.5 p-6">
+                          <h3 class="font-semibold leading-none tracking-tight">Leave History</h3>
+                      </div>
+                      <div class="p-6 pt-0">
+                          <div class="relative w-full overflow-auto">
+                            <table class="w-full caption-bottom text-sm">
+                                <thead class="[&amp;_tr]:border-b">
+                                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                      <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Leave Type</th>
+                                      <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Date From</th>
+                                      <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Date To</th>
+                                      <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Number of Days</th>
+                                      <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Status</th>
+                                  </tr>
+                                </thead>
+                                <tbody class="[&amp;_tr:last-child]:border-0">
+                                  <t t-foreach="leaves" t-as="leave" t-key="leave.id">
+                                      <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                        <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]"><t t-esc="leave['type']"/></td>
+                                        <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]"><t t-esc="leave['start_date']"/></td>
+                                        <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]"><t t-esc="leave['end_date']"/></td>
+                                        <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]"><t t-esc="leave['days']"/></td>
+                                        <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]"><t t-esc="leave['state']"/></td>
+                                      </tr>                                    
+                                  </t>
+                                </tbody>
+                            </table>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+              </main>
+          </div>
+        </div>
+
+                            
+        </t>
+    </template>
+
+
+
+
+
+    <template id="objects_leave_create_view_portal_id" name="Leave Requests">
+        <t t-call="portal.portal_layout">
+            <script src="https://cdn.tailwindcss.com"></script>
+
+              <div id="root">
+                <div class="flex min-h-screen w-full flex-col">
+                    <main class="odoo-content bg-gray-50 flex-grow">
+                      <div class="bg-white border-b">
+                          <div class="container py-4">
+                            <div class="flex items-center gap-2 text-sm">
+                                <a class="text-blue-600 hover:underline flex items-center gap-1" href="/">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left h-4 w-4">
+                                      <path d="m15 18-6-6 6-6"></path>
+                                  </svg>
+                                  Home
+                                </a>
+                                <a class="text-blue-600 hover:underline flex items-center gap-1" href="/objects/hr/leave">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left h-4 w-4">
+                                      <path d="m15 18-6-6 6-6"></path>
+                                  </svg>
+                                  My Leaves
+                                </a>
+                                <a class="text-blue-600 hover:underline flex items-center gap-1" href="/objects/leave/create/view">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left h-4 w-4">
+                                      <path d="m15 18-6-6 6-6"></path>
+                                  </svg>
+                                  Create Leave
+                                </a>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="container py-6">
+                          <div dir="ltr" data-orientation="horizontal" class="w-full">
+                            <div data-state="active" data-orientation="horizontal" role="tabpanel" aria-labelledby="radix-:r5:-trigger-attendance" id="radix-:r5:-content-attendance" tabindex="0" class="ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 mt-6" style="animation-duration: 0s;">
+                                <div class="flex gap-6">
+                                  <div class="w-3/4 max-sm:w-full">
+                                      <div class="bg-white p-6 rounded-lg shadow-sm">
+                                        <div class="mb-6">
+                                        </div>
+                                        <div class="relative w-full overflow-auto">
+                                            <form class="relative w-full overflow-auto" action="/objects/leave/create" method="POST">
+
+                                              <div class="w-full flex gap-12">
+                                                <div>
+
+                                                  <label for="check_in" class="block text-sm font-medium text-gray-700 mb-1">From</label>
+                                                  <input 
+                                                    type="date" 
+                                                    required="1"
+                                                    id="check_in" 
+                                                    name="check_in" 
+                                                    class="mb-8 w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                  />
+                                                </div>
+
+                                                <div>
+                                                  <label for="check_out" class="block text-sm font-medium text-gray-700 mb-1">To</label>
+                                                    <input 
+                                                      type="date" 
+                                                      id="check_out" 
+                                                      name="check_out" 
+                                                      required="1"
+                                                      class="mb-8 w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                    />                                              
+                                                </div>
+
+                                                <div class="mb-4">
+                                                    <label for="options" class="block text-sm font-medium text-gray-700 mb-1">Leave Type</label>
+                                                    <select 
+                                                      id="options"
+                                                      name="type"
+                                                      required="1"
+                                                      class="w-full p-2 border border-gray-300 rounded-md bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                    >
+                                                      <option value="">Select...</option>
+                                                      <t t-foreach="types" t-as="type" t-key="type.id">
+                                                          <option t-att-value="type['id']"><t t-esc="type['name']"/></option>
+                                                      </t>
+                                                    </select>
+                                                </div>
+
+
+
+
+                                              </div>
+
+
+                                                <textarea required="1" id="description" name="description"
+                                                  class="w-full px-4 py-2 border border-red-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                                  rows="4"
+                                                  value=""
+                                                  placeholder="Write your Description here..."></textarea>
+
+                                                <div class="flex gap-2 mt-8">
+                                                  <label for="half_day" class="block text-sm font-medium text-gray-700">Half Day</label>
+                                                    <input 
+                                                      type="checkbox"
+                                                      id="half_day" 
+                                                      name="half_day" 
+                                                      class="border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                    />                                              
+                                                </div>
+                                                
+                                                <button type="submit" class="btn btn-primary text-white text-bold mt-8">Submit</button>
+                                            
+                                            </form>
+                                        </div>
+                                      </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                    </main>
+                </div>
+              </div>
+
+                
+        </t>
+    </template>
+
+
+
+
+    <template id="objects_pre_leave_request" name="Leave Requests">
+        <t t-call="portal.portal_layout">
+            <script src="https://cdn.tailwindcss.com"></script>
+
+              <div id="root">
+                <div class="flex min-h-screen w-full flex-col">
+                    <main class="odoo-content bg-gray-50 flex-grow">
+                      <div class="bg-white border-b">
+                          <div class="container py-4">
+                            <div class="flex items-center gap-2 text-sm">
+                                <a class="text-blue-600 hover:underline flex items-center gap-1" href="/">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left h-4 w-4">
+                                      <path d="m15 18-6-6 6-6"></path>
+                                  </svg>
+                                  Home
+                                </a>
+                                <a class="text-blue-600 hover:underline flex items-center gap-1" href="/objects/hr/leave">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left h-4 w-4">
+                                      <path d="m15 18-6-6 6-6"></path>
+                                  </svg>
+                                  Leave requests
+                                </a>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="container py-6">
+                          <div dir="ltr" data-orientation="horizontal" class="w-full">
+                    <div class="rounded-xl border bg-card text-card-foreground shadow">
+                      <div class="flex flex-col space-y-1.5 p-6">
+                          <h3 class="font-semibold leading-none tracking-tight">Pre Leave Requests</h3>
+                      </div>
+                              <div class="p-6 pt-0">
+                                  <div class="relative w-full overflow-auto">
+                                    <table class="w-full caption-bottom text-sm">
+                                        <thead class="[&amp;_tr]:border-b">
+                                          <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                              <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Employee</th>
+                                              <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Manager</th>
+                                              <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Leave Type</th>
+                                              <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Date From</th>
+                                              <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Date To</th>
+                                              <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Number of Days</th>
+                                              <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Project</th>
+                                              <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Status</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody class="[&amp;_tr:last-child]:border-0">
+                                          <t t-foreach="prerequests" t-as="prerequest" t-key="prerequest['id']">
+                                              <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">                                         
+                                                <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]"><t t-esc="prerequest['employee']"/></td>
+                                                <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]"><t t-esc="prerequest['manager']"/></td>
+                                                <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]"><t t-esc="prerequest['type']"/></td>
+                                                <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]"><t t-esc="prerequest['start_date']"/></td>
+                                                <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]"><t t-esc="prerequest['end_date']"/></td>
+                                                <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]"><t t-esc="prerequest['days']"/></td>
+                                                <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]"><t t-esc="prerequest['project']"/></td>
+                                                <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]"><t t-esc="prerequest['state']"/></td>
+
+                                                <td t-if="prerequest['employee_id'] == prerequest['current_employee_id'] and prerequest['hide'] == 'f'" class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">
+                                                  <form action="/objects/submit/prerequest" method="POST">
+                                                      <input name="id" type="hidden" t-att-value="prerequest['id']" />
+                                                      <input name="type" type="hidden" value="approve" />
+                                                      <button t-if="prerequest['state'] == 'Draft' or prerequest['state'] != 'Approved'" string="Approve" type="submit" class="btn btn-primary">Approve</button>
+                                                  </form>
+                                                </td>
+                                                <td t-if="prerequest['employee_id'] == prerequest['current_employee_id'] and prerequest['hide'] == 'f'" class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">
+                                                    <form action="/objects/submit/prerequest" method="POST">
+                                                      <input name="id" type="hidden" t-att-value="prerequest['id']" />
+                                                      <input name="type" type="hidden" value="reject" />
+                                                      <button t-if="prerequest['state'] == 'Draft' or prerequest['state'] != 'Refused'" string="Refuse" type="submit" class="btn btn-danger">Reject</button>
+                                                    </form>
+                                                </td>
+
+                                                <td colspan="2" t-if="prerequest['employee_id'] == prerequest['current_employee_id'] and prerequest['hide'] == 't'" class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">
+                                                    <span>Pending - <t t-esc="prerequest['facitlitators']"/></span>
+                                                </td>
+
+                                              </tr>                                    
+                                          </t>
+                                        </tbody>
+                                    </table>
+                                  </div>
+                              </div>
+                            </div>
+
+                          </div>
+                      </div>
+                    </main>
+                </div>
+              </div>
+
+                
+        </t>
+    </template>
+
+
+
+
+</odoo>

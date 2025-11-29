@@ -1,0 +1,1215 @@
+<odoo>
+    <template id="portal_custom_template" name="My Portal Page">
+        <t t-call="portal.portal_layout">
+        <style type="text/css">
+          #root {
+          max-width: none;
+          margin: 0;
+          padding: 0;
+          text-align: left;
+          width: 100%;
+          }
+          /* Ensure content takes full width */
+          .odoo-content {
+          min-height: calc(100vh - 140px); /* Adjust based on header/footer height */
+          width: 100%;
+          margin: 0;
+          padding: 0;
+          }
+          /* Container styles */
+          .container {
+          width: 100%;
+          margin: 0 auto;
+          padding-left: 1rem;
+          padding-right: 1rem;
+          }
+          @media (min-width: 640px) {
+          .container {
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+          }
+          }
+          @media (min-width: 1024px) {
+          .container {
+          padding-left: 2rem;
+          padding-right: 2rem;
+          }
+          }
+        </style>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script type="text/javascript" >
+            window.addEventListener('DOMContentLoaded', function () {
+                const el = document.getElementById('wrap');
+                    if (el) {
+                        el.classList.add('bg-gray-50');
+                    }              
+            });
+        </script>
+        
+        <div class="container">
+
+            <div id="root">
+              <div class="flex min-h-screen w-full flex-col">
+                  <main class="odoo-content bg-gray-50 flex-grow">
+                    <div class="container py-6">
+                        <div class="flex items-center gap-4 mb-6">
+                          <h1 class="text-xl sm:text-2xl font-bold">Welcome to Your Portal</h1>
+                          <button class="justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 flex items-center gap-2" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r1:" data-state="closed">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar h-4 w-4">
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                                <path d="M3 10h18"></path>
+                              </svg>
+                              May 5th, 2025
+                          </button>
+                        </div>
+                        <div class="flex flex-col lg:flex-row gap-6">
+                          <div class="lg:w-1/4 space-y-6">
+                              <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h2 class="text-lg font-semibold mb-4">Check In</h2>
+                                <div class="flex gap-6">
+                                    <div class="flex items-center gap-2">
+                                      <input type="radio" id="home" name="checkInType" value="home" checked=""/>
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house h-5 w-5">
+                                          <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                                          <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                      </svg>
+                                      <label for="home">Home</label>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                      <input type="radio" id="office" name="checkInType" value="office"/>
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building2 h-5 w-5">
+                                          <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
+                                          <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path>
+                                          <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path>
+                                          <path d="M10 6h4"></path>
+                                          <path d="M10 10h4"></path>
+                                          <path d="M10 14h4"></path>
+                                          <path d="M10 18h4"></path>
+                                      </svg>
+                                      <label for="office">Office</label>
+                                    </div>
+                                </div>
+                                <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-10 rounded-md px-8 w-full mt-6 text-white">Check In Now</button>
+                              </div>
+                              <div class="grid grid-cols-2 gap-4">
+
+                                <a href="/objects/hr/leave">
+                                    <div class="bg-white p-4 rounded-lg shadow-sm flex flex-col items-center justify-center aspect-square hover:bg-gray-50 transition-colors cursor-pointer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text h-8 w-8 mb-2 text-blue-600">
+                                          <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
+                                          <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+                                          <path d="M10 9H8"></path>
+                                          <path d="M16 13H8"></path>
+                                          <path d="M16 17H8"></path>
+                                        </svg>
+                                        <span class="text-sm font-medium">Leaves</span>
+                                    </div>
+                                  </a>
+
+                                <a href="/objects/hr/attendance">
+                                    <div class="bg-white p-4 rounded-lg shadow-sm flex flex-col items-center justify-center aspect-square hover:bg-gray-50 transition-colors cursor-pointer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-check h-8 w-8 mb-2 text-green-600">
+                                          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                          <circle cx="9" cy="7" r="4"></circle>
+                                          <polyline points="16 11 18 13 22 9"></polyline>
+                                        </svg>
+                                        <span class="text-sm font-medium">Attendance</span>
+                                    </div>
+                                  </a>
+                                <div class="bg-white p-4 rounded-lg shadow-sm flex flex-col items-center justify-center aspect-square hover:bg-gray-50 transition-colors cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star h-8 w-8 mb-2 text-yellow-600">
+                                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                    </svg>
+                                    <span class="text-sm font-medium">Evaluation</span>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg shadow-sm flex flex-col items-center justify-center aspect-square hover:bg-gray-50 transition-colors cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book h-8 w-8 mb-2 text-purple-600">
+                                      <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"></path>
+                                    </svg>
+                                    <span class="text-sm font-medium">Handbook</span>
+                                </div>
+                              </div>
+                          </div>
+                          <div class="lg:w-3/4 flex gap-6">
+                              <div class="w-2/3">
+                                <div class="bg-white p-6 rounded-lg shadow-sm">
+                                    <div class="flex justify-between items-center mb-4">
+                                      <h2 class="text-lg font-semibold">Checked In Employees</h2>
+                                      <div class="flex gap-2"><button class="px-3 py-1 rounded-full text-sm bg-gray-100">Home</button><button class="px-3 py-1 rounded-full text-sm bg-gray-100">Office</button><button class="px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-700">Both</button></div>
+                                    </div>
+                                    <div class="space-y-3 max-h-[600px] overflow-y-auto">
+                                      <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg">
+                                          <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-medium">XU</div>
+                                          <span class="flex-grow">Sarah Davis</span>
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house h-4 w-4 text-gray-500">
+                                            <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                                            <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                          </svg>
+                                      </div>
+                                      <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg">
+                                          <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-medium">VV</div>
+                                          <span class="flex-grow">Maria Johnson</span>
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building2 h-4 w-4 text-gray-500">
+                                            <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
+                                            <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path>
+                                            <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path>
+                                            <path d="M10 6h4"></path>
+                                            <path d="M10 10h4"></path>
+                                            <path d="M10 14h4"></path>
+                                            <path d="M10 18h4"></path>
+                                          </svg>
+                                      </div>
+                                      <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg">
+                                          <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-medium">KC</div>
+                                          <span class="flex-grow">David Johnson</span>
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building2 h-4 w-4 text-gray-500">
+                                            <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
+                                            <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path>
+                                            <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path>
+                                            <path d="M10 6h4"></path>
+                                            <path d="M10 10h4"></path>
+                                            <path d="M10 14h4"></path>
+                                            <path d="M10 18h4"></path>
+                                          </svg>
+                                      </div>
+
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="w-1/3 space-y-6">
+                                <div class="bg-white p-6 rounded-lg shadow-sm">
+                                    <h2 class="text-lg font-semibold mb-4">Employees on Leave</h2>
+                                    <div class="space-y-3">
+                                      <div class="flex flex-col gap-1 p-2 hover:bg-gray-50 rounded-lg">
+                                          <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-sm font-medium">FP</div>
+                                            <span>Emily Jackson</span>
+                                          </div>
+                                          <div class="text-sm text-gray-500 ml-11">Apr 29 - May 13, 2025</div>
+                                      </div>
+                                      <div class="flex flex-col gap-1 p-2 hover:bg-gray-50 rounded-lg">
+                                          <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-sm font-medium">CF</div>
+                                            <span>Oliver Martin</span>
+                                          </div>
+                                          <div class="text-sm text-gray-500 ml-11">Apr 30 - May 18, 2025</div>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-6 rounded-lg shadow-sm">
+                                    <h2 class="text-lg font-semibold mb-4">Absent Employees</h2>
+                                    <div class="space-y-3">
+                                      <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg">
+                                          <div class="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-sm font-medium">NJ</div>
+                                          <span>Olivia Walker</span>
+                                      </div>
+                                      <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg">
+                                          <div class="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-sm font-medium">ZX</div>
+                                          <span>Jack Lee</span>
+                                      </div>
+                                    </div>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                  </main>
+              </div>
+            </div>
+                
+        </div>
+        </t>
+    </template>
+
+
+
+
+    <template id="portal_custom_template_2" name="My Portal Page">
+        <t t-call="portal.portal_layout">
+            <style type="text/css">
+              #root {
+              max-width: none;
+              margin: 0;
+              padding: 0;
+              text-align: left;
+              width: 100%;
+              }
+              /* Ensure content takes full width */
+              .odoo-content {
+              min-height: calc(100vh - 140px); /* Adjust based on header/footer height */
+              width: 100%;
+              margin: 0;
+              padding: 0;
+              }
+              /* Container styles */
+              .container {
+              width: 100%;
+              margin: 0 auto;
+              padding-left: 1rem;
+              padding-right: 1rem;
+              }
+              @media (min-width: 640px) {
+              .container {
+              padding-left: 1.5rem;
+              padding-right: 1.5rem;
+              }
+              }
+              @media (min-width: 1024px) {
+              .container {
+              padding-left: 2rem;
+              padding-right: 2rem;
+              }
+              }
+            </style>
+            <script src="https://cdn.tailwindcss.com"></script>
+
+            <script type="text/javascript" >
+                window.addEventListener('DOMContentLoaded', function () {
+                    const el = document.getElementById('wrap');
+                        if (el) {
+                            el.classList.add('bg-gray-50');
+                        }              
+                });
+            </script>
+
+
+              <div id="root">
+                <div class="flex min-h-screen w-full flex-col">
+                    <main class="odoo-content bg-gray-50 flex-grow">
+                      <div class="bg-white border-b">
+                          <div class="container py-4">
+                            <div class="flex items-center gap-2 text-sm">
+                                <a class="text-blue-600 hover:underline flex items-center gap-1" href="/">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left h-4 w-4">
+                                      <path d="m15 18-6-6 6-6"></path>
+                                  </svg>
+                                  Home
+                                </a>
+                                <span class="text-gray-400">/</span><span>Attendance</span>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="container py-6">
+                          <div dir="ltr" data-orientation="horizontal" class="w-full">
+                            <div role="tablist" aria-orientation="horizontal" class="inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground w-full" tabindex="0" data-orientation="horizontal" style="outline: none;"><button type="button" role="tab" aria-selected="true" aria-controls="radix-:r5:-content-attendance" data-state="active" id="radix-:r5:-trigger-attendance" class="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow flex-1" tabindex="-1" data-orientation="horizontal" data-radix-collection-item="">My Attendance</button><button type="button" role="tab" aria-selected="false" aria-controls="radix-:r5:-content-requests" data-state="inactive" id="radix-:r5:-trigger-requests" class="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow flex-1" tabindex="-1" data-orientation="horizontal" data-radix-collection-item="">My Requests</button></div>
+                            <div data-state="active" data-orientation="horizontal" role="tabpanel" aria-labelledby="radix-:r5:-trigger-attendance" id="radix-:r5:-content-attendance" tabindex="0" class="ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 mt-6" style="animation-duration: 0s;">
+                                <div class="flex gap-6">
+                                  <div class="w-1/4 space-y-6">
+                                      <div class="bg-white p-6 rounded-lg shadow-sm">
+                                        <h3 class="text-lg font-semibold mb-4">Work Location Hours</h3>
+                                        <div class="space-y-4">
+                                            <div>
+                                              <div class="flex justify-between mb-2">
+                                                  <div class="flex gap-4">
+                                                    <span class="text-sm flex items-center gap-2">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house h-4 w-4">
+                                                          <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                                                          <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                                        </svg>
+                                                        Home (65h)
+                                                    </span>
+                                                    <span class="text-sm flex items-center gap-2">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building2 h-4 w-4">
+                                                          <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
+                                                          <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path>
+                                                          <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path>
+                                                          <path d="M10 6h4"></path>
+                                                          <path d="M10 10h4"></path>
+                                                          <path d="M10 14h4"></path>
+                                                          <path d="M10 18h4"></path>
+                                                        </svg>
+                                                        Office (95h)
+                                                    </span>
+                                                  </div>
+                                              </div>
+                                              <div class="h-2 rounded-full bg-gray-100 overflow-hidden">
+                                                  <div class="h-full bg-blue-500" style="width: 40.625%; border-right: 2px solid white;"></div>
+                                                  <div class="h-full bg-green-500 -mt-2" style="width: 59.375%; margin-left: 40.625%;"></div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                      <div class="bg-white p-6 rounded-lg shadow-sm">
+                                        <h3 class="text-lg font-semibold mb-4">Hours Progress</h3>
+                                        <div class="space-y-4">
+                                            <div>
+                                              <div class="flex justify-between mb-2">
+                                                  <div class="flex gap-4">
+                                                    <span class="text-sm flex items-center gap-2">
+                                                        <div class="w-3 h-3 rounded-full bg-blue-500"></div>
+                                                        Worked (120h)
+                                                    </span>
+                                                    <span class="text-sm flex items-center gap-2">
+                                                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                                        Required (140h)
+                                                    </span>
+                                                    <span class="text-sm flex items-center gap-2">
+                                                        <div class="w-3 h-3 rounded-full bg-gray-300"></div>
+                                                        Total (160h)
+                                                    </span>
+                                                  </div>
+                                              </div>
+                                              <div class="h-2 rounded-full bg-gray-100 overflow-hidden">
+                                                  <div class="h-full bg-blue-500" style="width: 75%; border-right: 2px solid white;"></div>
+                                                  <div class="h-full bg-yellow-500 -mt-2" style="width: 12.5%; margin-left: 75%; border-right: 2px solid white;"></div>
+                                                  <div class="h-full bg-gray-300 -mt-2" style="width: 12.5%; margin-left: 87.5%;"></div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                  </div>
+                                  <div class="w-3/4">
+                                      <div class="bg-white p-6 rounded-lg shadow-sm">
+                                        <div class="mb-6">
+                                            <button type="button" role="combobox" aria-controls="radix-:rb:" aria-expanded="false" aria-autocomplete="none" dir="ltr" data-state="closed" class="flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&amp;>span]:line-clamp-1">
+                                              <span style="pointer-events: none;">May 2025</span>
+                                              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-50" aria-hidden="true">
+                                                  <path d="M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819C5.10753 6.24392 5.39245 6.24392 5.56819 6.06819L7.49999 4.13638L9.43179 6.06819C9.60753 6.24392 9.89245 6.24392 10.0682 6.06819C10.2439 5.89245 10.2439 5.60753 10.0682 5.43179L7.81819 3.18179C7.73379 3.0974 7.61933 3.04999 7.49999 3.04999C7.38064 3.04999 7.26618 3.0974 7.18179 3.18179L4.93179 5.43179ZM10.0682 9.56819C10.2439 9.39245 10.2439 9.10753 10.0682 8.93179C9.89245 8.75606 9.60753 8.75606 9.43179 8.93179L7.49999 10.8636L5.56819 8.93179C5.39245 8.75606 5.10753 8.75606 4.93179 8.93179C4.75605 9.10753 4.75605 9.39245 4.93179 9.56819L7.18179 11.8182C7.35753 11.9939 7.64245 11.9939 7.81819 11.8182L10.0682 9.56819Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
+                                              </svg>
+                                            </button>
+                                        </div>
+                                        <div class="relative w-full overflow-auto">
+                                            <table class="w-full caption-bottom text-sm">
+                                              <thead class="[&amp;_tr]:border-b">
+                                                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                                    <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Date</th>
+                                                    <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Location</th>
+                                                    <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">In Time</th>
+                                                    <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Out Time</th>
+                                                    <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Hours</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody class="[&amp;_tr:last-child]:border-0">
+                                                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">May 08, 2025</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house h-4 w-4">
+                                                          <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                                                          <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                                        </svg>
+                                                    </td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">8:35</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">18:52</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">10.28h</td>
+                                                  </tr>
+                                                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">May 09, 2025</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building2 h-4 w-4">
+                                                          <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
+                                                          <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path>
+                                                          <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path>
+                                                          <path d="M10 6h4"></path>
+                                                          <path d="M10 10h4"></path>
+                                                          <path d="M10 14h4"></path>
+                                                          <path d="M10 18h4"></path>
+                                                        </svg>
+                                                    </td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">8:38</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">18:56</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">10.30h</td>
+                                                  </tr>
+                                                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">May 10, 2025</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house h-4 w-4">
+                                                          <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                                                          <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                                        </svg>
+                                                    </td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">9:23</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">17:48</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">8.42h</td>
+                                                  </tr>
+                                                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">May 11, 2025</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house h-4 w-4">
+                                                          <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                                                          <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                                        </svg>
+                                                    </td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">9:39</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">17:38</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">7.98h</td>
+                                                  </tr>
+                                                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">May 12, 2025</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building2 h-4 w-4">
+                                                          <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
+                                                          <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path>
+                                                          <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path>
+                                                          <path d="M10 6h4"></path>
+                                                          <path d="M10 10h4"></path>
+                                                          <path d="M10 14h4"></path>
+                                                          <path d="M10 18h4"></path>
+                                                        </svg>
+                                                    </td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">9:25</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">18:35</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">9.17h</td>
+                                                  </tr>
+                                                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">May 13, 2025</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building2 h-4 w-4">
+                                                          <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
+                                                          <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path>
+                                                          <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path>
+                                                          <path d="M10 6h4"></path>
+                                                          <path d="M10 10h4"></path>
+                                                          <path d="M10 14h4"></path>
+                                                          <path d="M10 18h4"></path>
+                                                        </svg>
+                                                    </td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">8:35</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">17:13</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">8.63h</td>
+                                                  </tr>
+                                                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">May 14, 2025</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building2 h-4 w-4">
+                                                          <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
+                                                          <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path>
+                                                          <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path>
+                                                          <path d="M10 6h4"></path>
+                                                          <path d="M10 10h4"></path>
+                                                          <path d="M10 14h4"></path>
+                                                          <path d="M10 18h4"></path>
+                                                        </svg>
+                                                    </td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">8:21</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">17:24</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">9.05h</td>
+                                                  </tr>
+                                                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">May 15, 2025</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house h-4 w-4">
+                                                          <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                                                          <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                                        </svg>
+                                                    </td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">9:42</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">18:43</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">9.02h</td>
+                                                  </tr>
+                                                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">May 16, 2025</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building2 h-4 w-4">
+                                                          <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
+                                                          <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path>
+                                                          <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path>
+                                                          <path d="M10 6h4"></path>
+                                                          <path d="M10 10h4"></path>
+                                                          <path d="M10 14h4"></path>
+                                                          <path d="M10 18h4"></path>
+                                                        </svg>
+                                                    </td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">8:00</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">18:56</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">10.93h</td>
+                                                  </tr>
+                                                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">May 17, 2025</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house h-4 w-4">
+                                                          <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                                                          <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                                        </svg>
+                                                    </td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">9:32</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">17:51</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">8.32h</td>
+                                                  </tr>
+                                                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">May 18, 2025</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house h-4 w-4">
+                                                          <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                                                          <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                                        </svg>
+                                                    </td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">9:14</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">18:54</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">9.67h</td>
+                                                  </tr>
+                                                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">May 19, 2025</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house h-4 w-4">
+                                                          <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                                                          <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                                        </svg>
+                                                    </td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">9:01</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">17:12</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">8.18h</td>
+                                                  </tr>
+                                                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">May 20, 2025</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building2 h-4 w-4">
+                                                          <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
+                                                          <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path>
+                                                          <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path>
+                                                          <path d="M10 6h4"></path>
+                                                          <path d="M10 10h4"></path>
+                                                          <path d="M10 14h4"></path>
+                                                          <path d="M10 18h4"></path>
+                                                        </svg>
+                                                    </td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">8:40</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">17:18</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">8.63h</td>
+                                                  </tr>
+                                                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">May 21, 2025</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house h-4 w-4">
+                                                          <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                                                          <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                                        </svg>
+                                                    </td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">8:00</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">18:11</td>
+                                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">10.18h</td>
+                                                  </tr>
+                                              </tbody>
+                                            </table>
+                                        </div>
+                                      </div>
+                                  </div>
+                                </div>
+                            </div>
+                            <div data-state="inactive" data-orientation="horizontal" role="tabpanel" aria-labelledby="radix-:r5:-trigger-requests" hidden="" id="radix-:r5:-content-requests" tabindex="0" class="ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 mt-6"></div>
+                          </div>
+                      </div>
+                    </main>
+                </div>
+              </div>
+
+                
+        </t>
+    </template>
+
+
+
+    <template id="portal_custom_template_3" name="My Portal Page">
+        <t t-call="portal.portal_layout">
+          <style type="text/css">
+            #root {
+            max-width: none;
+            margin: 0;
+            padding: 0;
+            text-align: left;
+            width: 100%;
+            }
+            /* Ensure content takes full width */
+            .odoo-content {
+            min-height: calc(100vh - 140px); /* Adjust based on header/footer height */
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            }
+            /* Container styles */
+            .container {
+            width: 100%;
+            margin: 0 auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            }
+            @media (min-width: 640px) {
+            .container {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            }
+            }
+            @media (min-width: 1024px) {
+            .container {
+            padding-left: 2rem;
+            padding-right: 2rem;
+            }
+            }
+          </style>
+
+          <script src="https://cdn.tailwindcss.com"></script>
+          <script type="text/javascript" >
+              window.addEventListener('DOMContentLoaded', function () {
+                  const el = document.getElementById('wrap');
+                      if (el) {
+                          el.classList.add('bg-gray-50');
+                      }              
+              });
+          </script>
+
+      <div id="root">
+         <div class="flex min-h-screen w-full flex-col">
+            <main class="odoo-content bg-gray-50 flex-grow">
+               <div class="bg-white border-b">
+                  <div class="container py-4">
+                     <div class="flex items-center gap-2 text-sm">
+                        <a class="text-blue-600 hover:underline flex items-center gap-1" href="/">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left h-4 w-4">
+                              <path d="m15 18-6-6 6-6"></path>
+                           </svg>
+                           Home
+                        </a>
+                        <span class="text-gray-400">/</span><span>Leaves</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="container py-6">
+                  <div class="flex gap-6 mb-8">
+                     <div class="w-3/5 grid grid-cols-3 gap-4">
+                        <div class="rounded-xl border bg-card text-card-foreground shadow">
+                           <div class="p-6 flex flex-row items-center justify-between space-y-0 pb-2">
+                              <h3 class="tracking-tight text-sm font-medium">Annual Leave</h3>
+                           </div>
+                           <div class="p-6 pt-0">
+                              <div class="text-2xl font-bold">20 days</div>
+                              <p class="text-xs text-muted-foreground">Remaining balance</p>
+                              <div class="mt-4">
+                                 <div id="annual-gauge" style="width: 100%;">
+                                    <svg width="228.921875" height="103.01484375000001">
+                                       <g transform="translate(32.046093750000026, 5.15)">
+                                          <g class="doughnut" transform="translate(82.41484374999999, 82.41484374999999)">
+                                             <g class="arc">
+                                                <path d="M-78.622,-2.638A3.549,3.549,0,1,1,-78.067,-9.693L-68.04,-8.105A2.75,2.75,0,0,1,-68.471,-2.638Z" style="fill: rgb(79, 70, 229);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-77.242,-14.905A3.549,3.549,0,1,1,-75.59,-21.786L-65.935,-18.649A2.75,2.75,0,0,1,-67.215,-13.317Z" style="fill: rgb(86, 81, 227);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-73.959,-26.805A3.549,3.549,0,1,1,-71.251,-33.343L-62.206,-28.734A2.75,2.75,0,0,1,-64.304,-23.668Z" style="fill: rgb(94, 92, 225);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-68.855,-38.045A3.549,3.549,0,1,1,-65.158,-44.079L-56.945,-38.112A2.75,2.75,0,0,1,-59.81,-33.436Z" style="fill: rgb(102, 103, 223);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-62.056,-48.347A3.549,3.549,0,1,1,-57.46,-53.729L-50.282,-46.55A2.75,2.75,0,0,1,-53.843,-42.38Z" style="fill: rgb(112, 115, 222);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-53.729,-57.46A3.549,3.549,0,1,1,-48.347,-62.056L-42.38,-53.843A2.75,2.75,0,0,1,-46.55,-50.282Z" style="fill: rgb(122, 126, 221);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-44.079,-65.158A3.549,3.549,0,1,1,-38.045,-68.855L-33.436,-59.81A2.75,2.75,0,0,1,-38.112,-56.945Z" style="fill: rgb(131, 137, 220);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-33.343,-71.251A3.549,3.549,0,1,1,-26.805,-73.959L-23.668,-64.304A2.75,2.75,0,0,1,-28.734,-62.206Z" style="fill: rgb(141, 147, 219);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-21.786,-75.59A3.549,3.549,0,1,1,-14.905,-77.242L-13.317,-67.215A2.75,2.75,0,0,1,-18.649,-65.935Z" style="fill: rgb(149, 157, 219);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-9.693,-78.067A3.549,3.549,0,1,1,-2.638,-78.622L-2.638,-68.471A2.75,2.75,0,0,1,-8.105,-68.04Z" style="fill: rgb(158, 166, 219);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M2.638,-78.622A3.549,3.549,0,1,1,9.693,-78.067L8.105,-68.04A2.75,2.75,0,0,1,2.638,-68.471Z" style="fill: rgb(167, 174, 219);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M14.905,-77.242A3.549,3.549,0,1,1,21.786,-75.59L18.649,-65.935A2.75,2.75,0,0,1,13.317,-67.215Z" style="fill: rgb(175, 182, 220);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M26.805,-73.959A3.549,3.549,0,1,1,33.343,-71.251L28.734,-62.206A2.75,2.75,0,0,1,23.668,-64.304Z" style="fill: rgb(182, 190, 221);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M38.045,-68.855A3.549,3.549,0,1,1,44.079,-65.158L38.112,-56.945A2.75,2.75,0,0,1,33.436,-59.81Z" style="fill: rgb(190, 197, 222);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M48.347,-62.056A3.549,3.549,0,1,1,53.729,-57.46L46.55,-50.282A2.75,2.75,0,0,1,42.38,-53.843Z" style="fill: rgb(197, 203, 223);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M57.46,-53.729A3.549,3.549,0,1,1,62.056,-48.347L53.843,-42.38A2.75,2.75,0,0,1,50.282,-46.55Z" style="fill: rgb(204, 209, 225);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M65.158,-44.079A3.549,3.549,0,1,1,68.855,-38.045L59.81,-33.436A2.75,2.75,0,0,1,56.945,-38.112Z" style="fill: rgb(211, 215, 227);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M71.251,-33.343A3.549,3.549,0,1,1,73.959,-26.805L64.304,-23.668A2.75,2.75,0,0,1,62.206,-28.734Z" style="fill: rgb(217, 221, 230);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M75.59,-21.786A3.549,3.549,0,1,1,77.242,-14.905L67.215,-13.317A2.75,2.75,0,0,1,65.935,-18.649Z" style="fill: rgb(223, 226, 232);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M78.067,-9.693A3.549,3.549,0,1,1,78.622,-2.638L68.471,-2.638A2.75,2.75,0,0,1,68.04,-8.105Z" style="fill: rgb(229, 231, 235);"></path>
+                                             </g>
+                                          </g>
+                                          <g class="needle" transform="translate(82.41484374999999, 82.41484374999999)">
+                                             <path d="M -5.352808299263077 0 L -22.664082031250004 -42.34578689753384 L 5.352808299263076 -6.1808906250000035" fill="#464A4F"></path>
+                                             <circle cx="0" cy="-3.0904453125000004" r="6.180890625000001" fill="#464A4F"></circle>
+                                          </g>
+                                          <g class="text-group" transform="translate(82.41484374999999, 61.207421874999994)">
+                                             <text style="font-size: 18.73px; fill: rgb(0, 0, 0); text-anchor: middle;">33.33%</text>
+                                          </g>
+                                       </g>
+                                    </svg>
+                                 </div>
+                                 <p class="text-xs text-center text-muted-foreground mt-2">Used 10 of 30 days</p>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="rounded-xl border bg-card text-card-foreground shadow">
+                           <div class="p-6 flex flex-row items-center justify-between space-y-0 pb-2">
+                              <h3 class="tracking-tight text-sm font-medium">Contingent Leave</h3>
+                           </div>
+                           <div class="p-6 pt-0">
+                              <div class="text-2xl font-bold">5 days</div>
+                              <p class="text-xs text-muted-foreground">Remaining balance</p>
+                              <div class="mt-4">
+                                 <div id="contingent-gauge" style="width: 100%;">
+                                    <svg width="228.9375" height="103.021875">
+                                       <g transform="translate(32.049999999999976, 5.1507812500000005)">
+                                          <g class="doughnut" transform="translate(82.41875000000002, 82.41875000000002)">
+                                             <g class="arc">
+                                                <path d="M-78.626,-2.638A3.55,3.55,0,1,1,-78.071,-9.694L-68.044,-8.106A2.751,2.751,0,0,1,-68.474,-2.638Z" style="fill: rgb(16, 185, 129);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-77.245,-14.906A3.55,3.55,0,1,1,-75.593,-21.788L-65.938,-18.65A2.751,2.751,0,0,1,-67.218,-13.318Z" style="fill: rgb(21, 194, 146);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-73.962,-26.806A3.55,3.55,0,1,1,-71.254,-33.345L-62.208,-28.736A2.751,2.751,0,0,1,-64.307,-23.669Z" style="fill: rgb(27, 202, 162);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-68.858,-38.046A3.55,3.55,0,1,1,-65.161,-44.081L-56.947,-38.113A2.751,2.751,0,0,1,-59.813,-33.437Z" style="fill: rgb(33, 210, 179);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-62.059,-48.35A3.55,3.55,0,1,1,-57.463,-53.731L-50.284,-46.553A2.751,2.751,0,0,1,-53.846,-42.382Z" style="fill: rgb(41, 216, 195);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-53.731,-57.463A3.55,3.55,0,1,1,-48.35,-62.059L-42.382,-53.846A2.751,2.751,0,0,1,-46.553,-50.284Z" style="fill: rgb(57, 213, 203);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-44.081,-65.161A3.55,3.55,0,1,1,-38.046,-68.858L-33.437,-59.813A2.751,2.751,0,0,1,-38.113,-56.947Z" style="fill: rgb(72, 212, 209);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-33.345,-71.254A3.55,3.55,0,1,1,-26.806,-73.962L-23.669,-64.307A2.751,2.751,0,0,1,-28.736,-62.208Z" style="fill: rgb(88, 206, 210);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-21.788,-75.593A3.55,3.55,0,1,1,-14.906,-77.245L-13.318,-67.218A2.751,2.751,0,0,1,-18.65,-65.938Z" style="fill: rgb(102, 200, 210);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-9.694,-78.071A3.55,3.55,0,1,1,-2.638,-78.626L-2.638,-68.474A2.751,2.751,0,0,1,-8.106,-68.044Z" style="fill: rgb(116, 196, 209);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M2.638,-78.626A3.55,3.55,0,1,1,9.694,-78.071L8.106,-68.044A2.751,2.751,0,0,1,2.638,-68.474Z" style="fill: rgb(130, 194, 210);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M14.906,-77.245A3.55,3.55,0,1,1,21.788,-75.593L18.65,-65.938A2.751,2.751,0,0,1,13.318,-67.218Z" style="fill: rgb(143, 194, 210);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M26.806,-73.962A3.55,3.55,0,1,1,33.345,-71.254L28.736,-62.208A2.751,2.751,0,0,1,23.669,-64.307Z" style="fill: rgb(156, 195, 212);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M38.046,-68.858A3.55,3.55,0,1,1,44.081,-65.161L38.113,-56.947A2.751,2.751,0,0,1,33.437,-59.813Z" style="fill: rgb(168, 197, 213);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M48.35,-62.059A3.55,3.55,0,1,1,53.731,-57.463L46.553,-50.284A2.751,2.751,0,0,1,42.382,-53.846Z" style="fill: rgb(179, 201, 216);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M57.463,-53.731A3.55,3.55,0,1,1,62.059,-48.35L53.846,-42.382A2.751,2.751,0,0,1,50.284,-46.553Z" style="fill: rgb(190, 206, 219);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M65.161,-44.081A3.55,3.55,0,1,1,68.858,-38.046L59.813,-33.437A2.751,2.751,0,0,1,56.947,-38.113Z" style="fill: rgb(201, 211, 222);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M71.254,-33.345A3.55,3.55,0,1,1,73.962,-26.806L64.307,-23.669A2.751,2.751,0,0,1,62.208,-28.736Z" style="fill: rgb(211, 217, 226);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M75.593,-21.788A3.55,3.55,0,1,1,77.245,-14.906L67.218,-13.318A2.751,2.751,0,0,1,65.938,-18.65Z" style="fill: rgb(220, 224, 230);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M78.071,-9.694A3.55,3.55,0,1,1,78.626,-2.638L68.474,-2.638A2.751,2.751,0,0,1,68.044,-8.106Z" style="fill: rgb(229, 231, 235);"></path>
+                                             </g>
+                                          </g>
+                                          <g class="needle" transform="translate(82.41875000000002, 82.41875000000002)">
+                                             <path d="M -4.832744715473163 0.7633290558519126 L -28.262987558819482 -38.53132167261408 L 4.832744715473163 -6.944641555851913" fill="#464A4F"></path>
+                                             <circle cx="0" cy="-3.09065625" r="6.1813125" fill="#464A4F"></circle>
+                                          </g>
+                                          <g class="text-group" transform="translate(82.41875000000002, 61.20937500000001)">
+                                             <text style="font-size: 18.7312px; fill: rgb(0, 0, 0); text-anchor: middle;">28.57%</text>
+                                          </g>
+                                       </g>
+                                    </svg>
+                                 </div>
+                                 <p class="text-xs text-center text-muted-foreground mt-2">Used 2 of 7 days</p>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="rounded-xl border bg-card text-card-foreground shadow">
+                           <div class="p-6 flex flex-row items-center justify-between space-y-0 pb-2">
+                              <h3 class="tracking-tight text-sm font-medium">Work from Home</h3>
+                           </div>
+                           <div class="p-6 pt-0">
+                              <div class="text-2xl font-bold">15 days</div>
+                              <p class="text-xs text-muted-foreground">Remaining balance</p>
+                              <div class="mt-4">
+                                 <div id="wfh-gauge" style="width: 100%;">
+                                    <svg width="228.921875" height="103.01484375000001">
+                                       <g transform="translate(32.046093750000026, 5.15)">
+                                          <g class="doughnut" transform="translate(82.41484374999999, 82.41484374999999)">
+                                             <g class="arc">
+                                                <path d="M-78.622,-2.638A3.549,3.549,0,1,1,-78.067,-9.693L-68.04,-8.105A2.75,2.75,0,0,1,-68.471,-2.638Z" style="fill: rgb(245, 158, 11);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-77.242,-14.905A3.549,3.549,0,1,1,-75.59,-21.786L-65.935,-18.649A2.75,2.75,0,0,1,-67.215,-13.317Z" style="fill: rgb(240, 128, 27);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-73.959,-26.805A3.549,3.549,0,1,1,-71.251,-33.343L-62.206,-28.734A2.75,2.75,0,0,1,-64.304,-23.668Z" style="fill: rgb(236, 103, 42);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-68.855,-38.045A3.549,3.549,0,1,1,-65.158,-44.079L-56.945,-38.112A2.75,2.75,0,0,1,-59.81,-33.436Z" style="fill: rgb(232, 85, 56);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-62.056,-48.347A3.549,3.549,0,1,1,-57.46,-53.729L-50.282,-46.55A2.75,2.75,0,0,1,-53.843,-42.38Z" style="fill: rgb(229, 71, 71);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-53.729,-57.46A3.549,3.549,0,1,1,-48.347,-62.056L-42.38,-53.843A2.75,2.75,0,0,1,-46.55,-50.282Z" style="fill: rgb(226, 84, 106);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-44.079,-65.158A3.549,3.549,0,1,1,-38.045,-68.855L-33.436,-59.81A2.75,2.75,0,0,1,-38.112,-56.945Z" style="fill: rgb(224, 98, 136);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-33.343,-71.251A3.549,3.549,0,1,1,-26.805,-73.959L-23.668,-64.304A2.75,2.75,0,0,1,-28.734,-62.206Z" style="fill: rgb(222, 110, 162);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-21.786,-75.59A3.549,3.549,0,1,1,-14.905,-77.242L-13.317,-67.215A2.75,2.75,0,0,1,-18.649,-65.935Z" style="fill: rgb(221, 123, 183);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M-9.693,-78.067A3.549,3.549,0,1,1,-2.638,-78.622L-2.638,-68.471A2.75,2.75,0,0,1,-8.105,-68.04Z" style="fill: rgb(220, 135, 201);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M2.638,-78.622A3.549,3.549,0,1,1,9.693,-78.067L8.105,-68.04A2.75,2.75,0,0,1,2.638,-68.471Z" style="fill: rgb(219, 146, 214);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M14.905,-77.242A3.549,3.549,0,1,1,21.786,-75.59L18.649,-65.935A2.75,2.75,0,0,1,13.317,-67.215Z" style="fill: rgb(214, 157, 219);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M26.805,-73.959A3.549,3.549,0,1,1,33.343,-71.251L28.734,-62.206A2.75,2.75,0,0,1,23.668,-64.304Z" style="fill: rgb(207, 168, 220);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M38.045,-68.855A3.549,3.549,0,1,1,44.079,-65.158L38.112,-56.945A2.75,2.75,0,0,1,33.436,-59.81Z" style="fill: rgb(203, 178, 220);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M48.347,-62.056A3.549,3.549,0,1,1,53.729,-57.46L46.55,-50.282A2.75,2.75,0,0,1,42.38,-53.843Z" style="fill: rgb(203, 188, 222);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M57.46,-53.729A3.549,3.549,0,1,1,62.056,-48.347L53.843,-42.38A2.75,2.75,0,0,1,50.282,-46.55Z" style="fill: rgb(205, 197, 223);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M65.158,-44.079A3.549,3.549,0,1,1,68.855,-38.045L59.81,-33.436A2.75,2.75,0,0,1,56.945,-38.112Z" style="fill: rgb(208, 206, 226);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M71.251,-33.343A3.549,3.549,0,1,1,73.959,-26.805L64.304,-23.668A2.75,2.75,0,0,1,62.206,-28.734Z" style="fill: rgb(214, 214, 228);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M75.59,-21.786A3.549,3.549,0,1,1,77.242,-14.905L67.215,-13.317A2.75,2.75,0,0,1,65.935,-18.649Z" style="fill: rgb(222, 223, 231);"></path>
+                                             </g>
+                                             <g class="arc">
+                                                <path d="M78.067,-9.693A3.549,3.549,0,1,1,78.622,-2.638L68.471,-2.638A2.75,2.75,0,0,1,68.04,-8.105Z" style="fill: rgb(229, 231, 235);"></path>
+                                             </g>
+                                          </g>
+                                          <g class="needle" transform="translate(82.41484374999999, 82.41484374999999)">
+                                             <path d="M -5.710398341128395 -0.7251208730517953 L -17.346337406245414 -44.96820833615741 L 5.710398341128395 -5.455769751948207" fill="#464A4F"></path>
+                                             <circle cx="0" cy="-3.0904453125000004" r="6.180890625000001" fill="#464A4F"></circle>
+                                          </g>
+                                          <g class="text-group" transform="translate(82.41484374999999, 61.207421874999994)">
+                                             <text style="font-size: 18.73px; fill: rgb(0, 0, 0); text-anchor: middle;">37.5%</text>
+                                          </g>
+                                       </g>
+                                    </svg>
+                                 </div>
+                                 <p class="text-xs text-center text-muted-foreground mt-2">Used 9 of 24 days</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="w-2/5">
+                        <div class="rounded-xl border bg-card text-card-foreground shadow">
+                           <div class="flex flex-col space-y-1.5 p-6">
+                              <h3 class="font-semibold leading-none tracking-tight">Leave History</h3>
+                           </div>
+                           <div class="p-6 pt-0">
+                              <div class="h-[200px]">
+                                 <div class="recharts-responsive-container" style="width: 100%; height: 100%; min-width: 0px;">
+                                    <div class="recharts-wrapper" style="position: relative; cursor: default; width: 100%; height: 100%; max-height: 200px; max-width: 529px;">
+                                       <svg class="recharts-surface" width="529" height="200" viewBox="0 0 529 200" style="width: 100%; height: 100%;">
+                                          <title></title>
+                                          <desc></desc>
+                                          <defs>
+                                             <clipPath id="recharts2-clip">
+                                                <rect x="65" y="5" height="136" width="459"></rect>
+                                             </clipPath>
+                                          </defs>
+                                          <g class="recharts-cartesian-grid">
+                                             <g class="recharts-cartesian-grid-horizontal">
+                                                <line stroke-dasharray="3 3" stroke="#ccc" fill="none" x="65" y="5" width="459" height="136" x1="65" y1="141" x2="524" y2="141"></line>
+                                                <line stroke-dasharray="3 3" stroke="#ccc" fill="none" x="65" y="5" width="459" height="136" x1="65" y1="107" x2="524" y2="107"></line>
+                                                <line stroke-dasharray="3 3" stroke="#ccc" fill="none" x="65" y="5" width="459" height="136" x1="65" y1="73" x2="524" y2="73"></line>
+                                                <line stroke-dasharray="3 3" stroke="#ccc" fill="none" x="65" y="5" width="459" height="136" x1="65" y1="5" x2="524" y2="5"></line>
+                                             </g>
+                                             <g class="recharts-cartesian-grid-vertical">
+                                                <line stroke-dasharray="3 3" stroke="#ccc" fill="none" x="65" y="5" width="459" height="136" x1="103.25" y1="5" x2="103.25" y2="141"></line>
+                                                <line stroke-dasharray="3 3" stroke="#ccc" fill="none" x="65" y="5" width="459" height="136" x1="179.75" y1="5" x2="179.75" y2="141"></line>
+                                                <line stroke-dasharray="3 3" stroke="#ccc" fill="none" x="65" y="5" width="459" height="136" x1="256.25" y1="5" x2="256.25" y2="141"></line>
+                                                <line stroke-dasharray="3 3" stroke="#ccc" fill="none" x="65" y="5" width="459" height="136" x1="332.75" y1="5" x2="332.75" y2="141"></line>
+                                                <line stroke-dasharray="3 3" stroke="#ccc" fill="none" x="65" y="5" width="459" height="136" x1="409.25" y1="5" x2="409.25" y2="141"></line>
+                                                <line stroke-dasharray="3 3" stroke="#ccc" fill="none" x="65" y="5" width="459" height="136" x1="485.75" y1="5" x2="485.75" y2="141"></line>
+                                                <line stroke-dasharray="3 3" stroke="#ccc" fill="none" x="65" y="5" width="459" height="136" x1="65" y1="5" x2="65" y2="141"></line>
+                                                <line stroke-dasharray="3 3" stroke="#ccc" fill="none" x="65" y="5" width="459" height="136" x1="524" y1="5" x2="524" y2="141"></line>
+                                             </g>
+                                          </g>
+                                          <g class="recharts-layer recharts-cartesian-axis recharts-xAxis xAxis">
+                                             <line orientation="bottom" width="459" height="30" x="65" y="141" class="recharts-cartesian-axis-line" stroke="#666" fill="none" x1="65" y1="141" x2="524" y2="141"></line>
+                                             <g class="recharts-cartesian-axis-ticks">
+                                                <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                   <line orientation="bottom" width="459" height="30" x="65" y="141" class="recharts-cartesian-axis-tick-line" stroke="#666" fill="none" x1="103.25" y1="147" x2="103.25" y2="141"></line>
+                                                   <text orientation="bottom" width="459" height="30" stroke="none" x="103.25" y="149" class="recharts-text recharts-cartesian-axis-tick-value" text-anchor="middle" fill="#666">
+                                                      <tspan x="103.25" dy="0.71em">Jan</tspan>
+                                                   </text>
+                                                </g>
+                                                <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                   <line orientation="bottom" width="459" height="30" x="65" y="141" class="recharts-cartesian-axis-tick-line" stroke="#666" fill="none" x1="179.75" y1="147" x2="179.75" y2="141"></line>
+                                                   <text orientation="bottom" width="459" height="30" stroke="none" x="179.75" y="149" class="recharts-text recharts-cartesian-axis-tick-value" text-anchor="middle" fill="#666">
+                                                      <tspan x="179.75" dy="0.71em">Feb</tspan>
+                                                   </text>
+                                                </g>
+                                                <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                   <line orientation="bottom" width="459" height="30" x="65" y="141" class="recharts-cartesian-axis-tick-line" stroke="#666" fill="none" x1="256.25" y1="147" x2="256.25" y2="141"></line>
+                                                   <text orientation="bottom" width="459" height="30" stroke="none" x="256.25" y="149" class="recharts-text recharts-cartesian-axis-tick-value" text-anchor="middle" fill="#666">
+                                                      <tspan x="256.25" dy="0.71em">Mar</tspan>
+                                                   </text>
+                                                </g>
+                                                <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                   <line orientation="bottom" width="459" height="30" x="65" y="141" class="recharts-cartesian-axis-tick-line" stroke="#666" fill="none" x1="332.75" y1="147" x2="332.75" y2="141"></line>
+                                                   <text orientation="bottom" width="459" height="30" stroke="none" x="332.75" y="149" class="recharts-text recharts-cartesian-axis-tick-value" text-anchor="middle" fill="#666">
+                                                      <tspan x="332.75" dy="0.71em">Apr</tspan>
+                                                   </text>
+                                                </g>
+                                                <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                   <line orientation="bottom" width="459" height="30" x="65" y="141" class="recharts-cartesian-axis-tick-line" stroke="#666" fill="none" x1="409.25" y1="147" x2="409.25" y2="141"></line>
+                                                   <text orientation="bottom" width="459" height="30" stroke="none" x="409.25" y="149" class="recharts-text recharts-cartesian-axis-tick-value" text-anchor="middle" fill="#666">
+                                                      <tspan x="409.25" dy="0.71em">May</tspan>
+                                                   </text>
+                                                </g>
+                                                <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                   <line orientation="bottom" width="459" height="30" x="65" y="141" class="recharts-cartesian-axis-tick-line" stroke="#666" fill="none" x1="485.75" y1="147" x2="485.75" y2="141"></line>
+                                                   <text orientation="bottom" width="459" height="30" stroke="none" x="485.75" y="149" class="recharts-text recharts-cartesian-axis-tick-value" text-anchor="middle" fill="#666">
+                                                      <tspan x="485.75" dy="0.71em">Jun</tspan>
+                                                   </text>
+                                                </g>
+                                             </g>
+                                          </g>
+                                          <g class="recharts-layer recharts-cartesian-axis recharts-yAxis yAxis">
+                                             <line orientation="left" width="60" height="136" x="5" y="5" class="recharts-cartesian-axis-line" stroke="#666" fill="none" x1="65" y1="5" x2="65" y2="141"></line>
+                                             <g class="recharts-cartesian-axis-ticks">
+                                                <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                   <line orientation="left" width="60" height="136" x="5" y="5" class="recharts-cartesian-axis-tick-line" stroke="#666" fill="none" x1="59" y1="141" x2="65" y2="141"></line>
+                                                   <text orientation="left" width="60" height="136" stroke="none" x="57" y="141" class="recharts-text recharts-cartesian-axis-tick-value" text-anchor="end" fill="#666">
+                                                      <tspan x="57" dy="0.355em">0</tspan>
+                                                   </text>
+                                                </g>
+                                                <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                   <line orientation="left" width="60" height="136" x="5" y="5" class="recharts-cartesian-axis-tick-line" stroke="#666" fill="none" x1="59" y1="107" x2="65" y2="107"></line>
+                                                   <text orientation="left" width="60" height="136" stroke="none" x="57" y="107" class="recharts-text recharts-cartesian-axis-tick-value" text-anchor="end" fill="#666">
+                                                      <tspan x="57" dy="0.355em">2</tspan>
+                                                   </text>
+                                                </g>
+                                                <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                   <line orientation="left" width="60" height="136" x="5" y="5" class="recharts-cartesian-axis-tick-line" stroke="#666" fill="none" x1="59" y1="73" x2="65" y2="73"></line>
+                                                   <text orientation="left" width="60" height="136" stroke="none" x="57" y="73" class="recharts-text recharts-cartesian-axis-tick-value" text-anchor="end" fill="#666">
+                                                      <tspan x="57" dy="0.355em">4</tspan>
+                                                   </text>
+                                                </g>
+                                                <g class="recharts-layer recharts-cartesian-axis-tick">
+                                                   <line orientation="left" width="60" height="136" x="5" y="5" class="recharts-cartesian-axis-tick-line" stroke="#666" fill="none" x1="59" y1="5" x2="65" y2="5"></line>
+                                                   <text orientation="left" width="60" height="136" stroke="none" x="57" y="12" class="recharts-text recharts-cartesian-axis-tick-value" text-anchor="end" fill="#666">
+                                                      <tspan x="57" dy="0.355em">8</tspan>
+                                                   </text>
+                                                </g>
+                                             </g>
+                                          </g>
+                                          <g class="recharts-layer recharts-bar">
+                                             <g class="recharts-layer recharts-bar-rectangles">
+                                                <g class="recharts-layer">
+                                                   <g class="recharts-layer recharts-bar-rectangle">
+                                                      <path x="72.65" y="107" width="61" height="34" radius="0" fill="#4f46e5" name="Annual Leave" class="recharts-rectangle" d="M 72.65,107 h 61 v 34 h -61 Z"></path>
+                                                   </g>
+                                                   <g class="recharts-layer recharts-bar-rectangle">
+                                                      <path x="149.15" y="124" width="61" height="17" radius="0" fill="#4f46e5" name="Annual Leave" class="recharts-rectangle" d="M 149.15,124 h 61 v 17 h -61 Z"></path>
+                                                   </g>
+                                                   <g class="recharts-layer recharts-bar-rectangle">
+                                                      <path x="225.65" y="90" width="61" height="51" radius="0" fill="#4f46e5" name="Annual Leave" class="recharts-rectangle" d="M 225.65,90 h 61 v 51 h -61 Z"></path>
+                                                   </g>
+                                                   <g class="recharts-layer recharts-bar-rectangle"></g>
+                                                   <g class="recharts-layer recharts-bar-rectangle">
+                                                      <path x="378.65" y="107" width="61" height="34" radius="0" fill="#4f46e5" name="Annual Leave" class="recharts-rectangle" d="M 378.65,107 h 61 v 34 h -61 Z"></path>
+                                                   </g>
+                                                   <g class="recharts-layer recharts-bar-rectangle">
+                                                      <path x="455.15" y="124" width="61" height="17" radius="0" fill="#4f46e5" name="Annual Leave" class="recharts-rectangle" d="M 455.15,124 h 61 v 17 h -61 Z"></path>
+                                                   </g>
+                                                </g>
+                                             </g>
+                                             <g class="recharts-layer"></g>
+                                          </g>
+                                          <g class="recharts-layer recharts-bar">
+                                             <g class="recharts-layer recharts-bar-rectangles">
+                                                <g class="recharts-layer">
+                                                   <g class="recharts-layer recharts-bar-rectangle">
+                                                      <path x="72.65" y="90" width="61" height="17" radius="0" fill="#10b981" name="Contingent Leave" class="recharts-rectangle" d="M 72.65,90 h 61 v 17 h -61 Z"></path>
+                                                   </g>
+                                                   <g class="recharts-layer recharts-bar-rectangle"></g>
+                                                   <g class="recharts-layer recharts-bar-rectangle">
+                                                      <path x="225.65" y="73" width="61" height="17" radius="0" fill="#10b981" name="Contingent Leave" class="recharts-rectangle" d="M 225.65,73 h 61 v 17 h -61 Z"></path>
+                                                   </g>
+                                                   <g class="recharts-layer recharts-bar-rectangle">
+                                                      <path x="302.15" y="107" width="61" height="34" radius="0" fill="#10b981" name="Contingent Leave" class="recharts-rectangle" d="M 302.15,107 h 61 v 34 h -61 Z"></path>
+                                                   </g>
+                                                   <g class="recharts-layer recharts-bar-rectangle"></g>
+                                                   <g class="recharts-layer recharts-bar-rectangle">
+                                                      <path x="455.15" y="107" width="61" height="17" radius="0" fill="#10b981" name="Contingent Leave" class="recharts-rectangle" d="M 455.15,107 h 61 v 17 h -61 Z"></path>
+                                                   </g>
+                                                </g>
+                                             </g>
+                                             <g class="recharts-layer"></g>
+                                          </g>
+                                          <g class="recharts-layer recharts-bar">
+                                             <g class="recharts-layer recharts-bar-rectangles">
+                                                <g class="recharts-layer">
+                                                   <g class="recharts-layer recharts-bar-rectangle">
+                                                      <path x="72.65" y="39" width="61" height="51" radius="0" fill="#f59e0b" name="Work from Home" class="recharts-rectangle" d="M 72.65,39 h 61 v 51 h -61 Z"></path>
+                                                   </g>
+                                                   <g class="recharts-layer recharts-bar-rectangle">
+                                                      <path x="149.15" y="90" width="61" height="34" radius="0" fill="#f59e0b" name="Work from Home" class="recharts-rectangle" d="M 149.15,90 h 61 v 34 h -61 Z"></path>
+                                                   </g>
+                                                   <g class="recharts-layer recharts-bar-rectangle">
+                                                      <path x="225.65" y="5" width="61" height="68" radius="0" fill="#f59e0b" name="Work from Home" class="recharts-rectangle" d="M 225.65,5 h 61 v 68 h -61 Z"></path>
+                                                   </g>
+                                                   <g class="recharts-layer recharts-bar-rectangle">
+                                                      <path x="302.15" y="90" width="61" height="17" radius="0" fill="#f59e0b" name="Work from Home" class="recharts-rectangle" d="M 302.15,90 h 61 v 17 h -61 Z"></path>
+                                                   </g>
+                                                   <g class="recharts-layer recharts-bar-rectangle">
+                                                      <path x="378.65" y="56" width="61" height="51" radius="0" fill="#f59e0b" name="Work from Home" class="recharts-rectangle" d="M 378.65,56 h 61 v 51 h -61 Z"></path>
+                                                   </g>
+                                                   <g class="recharts-layer recharts-bar-rectangle">
+                                                      <path x="455.15" y="73" width="61" height="34" radius="0" fill="#f59e0b" name="Work from Home" class="recharts-rectangle" d="M 455.15,73 h 61 v 34 h -61 Z"></path>
+                                                   </g>
+                                                </g>
+                                             </g>
+                                             <g class="recharts-layer"></g>
+                                          </g>
+                                       </svg>
+                                       <div class="recharts-legend-wrapper" style="position: absolute; width: 519px; height: auto; left: 5px; bottom: 5px;">
+                                          <ul class="recharts-default-legend" style="padding: 0px; margin: 0px; text-align: center;">
+                                             <li class="recharts-legend-item legend-item-0" style="display: inline-block; margin-right: 10px;">
+                                                <svg class="recharts-surface" width="14" height="14" viewBox="0 0 32 32" style="display: inline-block; vertical-align: middle; margin-right: 4px;">
+                                                   <title></title>
+                                                   <desc></desc>
+                                                   <path stroke="none" fill="#4f46e5" d="M0,4h32v24h-32z" class="recharts-legend-icon"></path>
+                                                </svg>
+                                                <span class="recharts-legend-item-text" style="color: rgb(79, 70, 229);">Annual Leave</span>
+                                             </li>
+                                             <li class="recharts-legend-item legend-item-1" style="display: inline-block; margin-right: 10px;">
+                                                <svg class="recharts-surface" width="14" height="14" viewBox="0 0 32 32" style="display: inline-block; vertical-align: middle; margin-right: 4px;">
+                                                   <title></title>
+                                                   <desc></desc>
+                                                   <path stroke="none" fill="#10b981" d="M0,4h32v24h-32z" class="recharts-legend-icon"></path>
+                                                </svg>
+                                                <span class="recharts-legend-item-text" style="color: rgb(16, 185, 129);">Contingent Leave</span>
+                                             </li>
+                                             <li class="recharts-legend-item legend-item-2" style="display: inline-block; margin-right: 10px;">
+                                                <svg class="recharts-surface" width="14" height="14" viewBox="0 0 32 32" style="display: inline-block; vertical-align: middle; margin-right: 4px;">
+                                                   <title></title>
+                                                   <desc></desc>
+                                                   <path stroke="none" fill="#f59e0b" d="M0,4h32v24h-32z" class="recharts-legend-icon"></path>
+                                                </svg>
+                                                <span class="recharts-legend-item-text" style="color: rgb(245, 158, 11);">Work from Home</span>
+                                             </li>
+                                          </ul>
+                                       </div>
+                                       <div tabindex="-1" class="recharts-tooltip-wrapper recharts-tooltip-wrapper-right recharts-tooltip-wrapper-bottom" style="visibility: hidden; pointer-events: none; position: absolute; top: 0px; left: 0px; transform: translate(65px, 10px);">
+                                          <div class="recharts-default-tooltip" style="margin: 0px; padding: 10px; background-color: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204); white-space: nowrap;">
+                                             <p class="recharts-tooltip-label" style="margin: 0px;"></p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="rounded-xl border bg-card text-card-foreground shadow">
+                     <div class="flex flex-col space-y-1.5 p-6">
+                        <h3 class="font-semibold leading-none tracking-tight">Leave History</h3>
+                     </div>
+                     <div class="p-6 pt-0">
+                        <div class="relative w-full overflow-auto">
+                           <table class="w-full caption-bottom text-sm">
+                              <thead class="[&amp;_tr]:border-b">
+                                 <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                    <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Leave Type</th>
+                                    <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Date From</th>
+                                    <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Date To</th>
+                                    <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Number of Days</th>
+                                    <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Approved By</th>
+                                 </tr>
+                              </thead>
+                              <tbody class="[&amp;_tr:last-child]:border-0">
+                                 <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Annual Leave</td>
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">2024-03-15</td>
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">2024-03-20</td>
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">5</td>
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">John Manager</td>
+                                 </tr>
+                                 <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Work from Home</td>
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">2024-03-10</td>
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">2024-03-10</td>
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">1</td>
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Sarah Supervisor</td>
+                                 </tr>
+                                 <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Contingent Leave</td>
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">2024-02-28</td>
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">2024-02-28</td>
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">1</td>
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Mike Director</td>
+                                 </tr>
+                                 <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Annual Leave</td>
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">2024-02-15</td>
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">2024-02-16</td>
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">2</td>
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">John Manager</td>
+                                 </tr>
+                                 <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Work from Home</td>
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">2024-02-01</td>
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">2024-02-02</td>
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">2</td>
+                                    <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Sarah Supervisor</td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </main>
+         </div>
+      </div>
+
+                            
+        </t>
+    </template>
+
+
+
+</odoo>

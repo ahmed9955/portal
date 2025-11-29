@@ -1,0 +1,382 @@
+<odoo>
+
+
+
+
+    <template id="objects_error_portal_id" name="Home">
+        <t t-call="portal.portal_layout">
+        <script src="https://cdn.tailwindcss.com"></script>        
+        <div class="container bg-gray-50">
+            <div id="root" class="bg-gray-50">
+              <div class="flex min-h-screen w-full flex-col bg-gray-50">
+                  <main class="odoo-content bg-gray-50 flex-grow">
+                    <div class="container py-6">
+                        <div class="flex flex-col lg:flex-row gap-6">
+                            <h1> <t t-esc="error"/> <a class="text-semibold text-green-500" href="/objects/hr/home">Home</a></h1>
+                        </div>
+                    </div>
+                  </main>
+              </div>
+            </div>
+                
+        </div>
+        </t>
+    </template>
+
+
+
+
+    <template id="inherit_portal_layout" name="Portal Layout" inherit_id="portal.portal_layout">
+        <xpath expr="//div[hasclass('o_portal')]/div[hasclass('align-items-center')]" position="attributes">
+            <attribute name="class">row align-items-center bg-gray-50 g-0</attribute>
+        </xpath>
+    </template>
+
+    <template id="inherit_option_header_brand_logo" name="Portal Layout" inherit_id="website.option_header_brand_logo">
+        <xpath expr="//span[@t-field='website.logo']" position="replace">
+            <img class="img-responsive d-block mx-auto" style="width:95px;" t-attf-src="/web/binary/company_logo" alt="Logo"/>
+        </xpath>
+    </template>
+
+
+
+
+    <template id="inherit_header_call_layout" name="header call Layout" inherit_id="website.header_call_to_action">
+        <xpath expr="//section[hasclass('s_text_block')]" position="replace">
+            <div/>          
+        </xpath>
+    </template>
+
+
+    <template id="inherit_footer_custom_layout" name="header call Layout" inherit_id="website.footer_custom">
+        <xpath expr="//section[hasclass('s_text_block')]" position="replace">
+            <div/>          
+        </xpath>
+    </template>
+
+
+    <template id="inherit_portal_frontend_layout" name="Portal Layout" inherit_id="web.frontend_layout">
+        <xpath expr="//main" position="attributes">
+            <attribute name="class">bg-gray-50</attribute>
+        </xpath>
+
+    </template>
+
+
+
+    <template id="inherit_portal_breadcrumbs" name="Portal Layout" inherit_id="portal.portal_breadcrumbs">
+        <xpath expr="//ol" position="attributes">
+            <attribute name="class">o_portal_submenu breadcrumb mb-0 py-2 flex-grow-1 hidden</attribute>
+        </xpath>
+    </template>
+
+    <template id="inherit_user_dropdown" name="dropdown" inherit_id="portal.user_dropdown">
+      <xpath expr='//div[@id="o_logout_divider"]' position="after">
+          <a href="#" role="menuitem" id="changepass" class="dropdown-item ps-3">
+              <i class="fa fa-fw fa-pencil-square-o me-1 small text-muted"/> change Password
+          </a>
+      </xpath>
+    </template>
+
+
+
+
+
+    <template id="objects_home_portal_id" name="Home">
+        <t t-call="portal.portal_layout">
+        <script src="https://cdn.tailwindcss.com"></script>
+        
+        <div class="container bg-gray-50">
+
+            <div id="root" class="bg-gray-50">
+              <div class="flex min-h-screen w-full flex-col bg-gray-50">
+                  <main class="odoo-content bg-gray-50 flex-grow">
+                    <div class="container py-6">
+                        <input type="hidden" id="hours_today_val" t-att-value="hours_today"/>
+                        <div class="flex items-center gap-4 mb-6">
+                          <h1 class="text-xl sm:text-2xl font-bold">Welcome , <t t-esc="employee_name"/></h1>
+                        </div>
+                        <div class="flex flex-col lg:flex-row gap-6">
+                        
+                          <div class="lg:w-1/4 space-y-6">
+                              <form action="/objects/hr/check-in-out" method="POST">
+                                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                                              <h2 t-if="attendance_state == 'checked_in' and not has_permission" class="text-lg font-semibold mb-4">Working Hours</h2>
+                                              <h2 t-if="has_permission" class="text-lg font-semibold mb-4">Permission Hours</h2>
+                                              <div t-if="attendance_state == 'checked_in' or has_permission" class="container text-center">
+                                                  <div id="timer-display" style="font-size: 2em; font-weight: bold;">--:--:--</div>
+                                              </div>
+                                              
+                                              <h2 t-if="attendance_state == 'checked_out' and not has_permission" class="text-lg font-semibold">Check In</h2>
+                                              <!-- <h2 class="text-lg font-semibold mb-4"><t t-esc="ip"/></h2> -->
+                                              <!-- <div t-if="attendance_state == 'checked_out' " t-att-class="'flex gap-6 '+permission_style">
+                                                  <div class="flex items-center gap-2">
+                                                    <input type="radio" id="home" name="checkInType" value="home" t-att-disabled="disable_home" required="1"/>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house h-5 w-5">
+                                                        <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                                                        <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                                    </svg>
+                                                    <label for="home">Home</label>
+                                                  </div>
+                                                  <div class="flex items-center gap-2">
+                                                    <input type="radio" id="office" name="checkInType" value="office" t-att-checked="disable_home" required="1"/>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building2 h-5 w-5">
+                                                        <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
+                                                        <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path>
+                                                        <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path>
+                                                        <path d="M10 6h4"></path>
+                                                        <path d="M10 10h4"></path>
+                                                        <path d="M10 14h4"></path>
+                                                        <path d="M10 18h4"></path>
+                                                    </svg>
+                                                    <label for="office">Office</label>
+                                                  </div> -->
+
+                                              <!-- </div> -->
+                                      <!-- t-att-disabled="not disable_home" -->
+
+
+
+                                      <button id="check-in-now"  type="submit" t-if="attendance_state == 'checked_out' and not has_permission and start_check_in == 'start'" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-10 rounded-md px-8 w-full mt-6 text-white">Check In Now</button>
+                                      <button type="submit" name="permission-check-in" id="showpermissioncheckin" t-if="has_permission" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-green-500 text-primary-foreground shadow hover:bg-primary/90 h-10 rounded-md px-8 w-full mt-6 text-white">Break In</button>
+                                      <div class="flex gap-2">
+                                          <button type="submit" name="permission-check-out" id="showpermissioncheckout" t-if="attendance_state == 'checked_in' and not has_permission" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-blue-500 text-primary-foreground shadow hover:bg-primary/90 h-10 rounded-md px-8 w-full mt-6 text-white">Break Out</button>
+                                          <button type="button" id="showcheckoutdialog" t-if="attendance_state == 'checked_in' and not has_permission" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-red-500 text-primary-foreground shadow hover:bg-primary/90 h-10 rounded-md px-8 w-full mt-6 text-white">Check Out</button>
+                                      </div>
+                                    </div>
+                              </form>
+
+
+                              <div class="grid grid-cols-2 gap-4">
+
+                                <a href="/objects/hr/leave">
+                                    <div class="bg-white p-4 rounded-lg shadow-sm flex flex-col items-center justify-center aspect-square hover:bg-gray-50 transition-colors cursor-pointer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text h-8 w-8 mb-2 text-blue-600">
+                                          <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
+                                          <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+                                          <path d="M10 9H8"></path>
+                                          <path d="M16 13H8"></path>
+                                          <path d="M16 17H8"></path>
+                                        </svg>
+                                        <span class="text-sm font-medium">Leaves</span>
+                                    </div>
+                                  </a>
+
+                                <a href="/objects/hr/attendance">
+                                    <div class="bg-white p-4 rounded-lg shadow-sm flex flex-col items-center justify-center aspect-square hover:bg-gray-50 transition-colors cursor-pointer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-check h-8 w-8 mb-2 text-green-600">
+                                          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                          <circle cx="9" cy="7" r="4"></circle>
+                                          <polyline points="16 11 18 13 22 9"></polyline>
+                                        </svg>
+                                        <span class="text-sm font-medium">Attendance</span>
+                                    </div>
+                                  </a>
+
+                                <a href="/objects/hr/assignments">
+                                    <div class="bg-white p-4 rounded-lg shadow-sm flex flex-col items-center justify-center aspect-square hover:bg-gray-50 transition-colors cursor-pointer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#DB2777" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-check h-8 w-8 mb-2">
+                                          <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                                          <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+                                          <polyline points="9 14 11 16 15 12" />
+                                        </svg>
+                                        <span class="text-sm font-medium">Assignements</span>
+                                    </div>
+                                </a>
+                                <a href="/objects/evaluation/questions">
+                                  <div class="bg-white p-4 rounded-lg shadow-sm flex flex-col items-center justify-center aspect-square hover:bg-gray-50 transition-colors cursor-pointer">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star h-8 w-8 mb-2 text-yellow-600">
+                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                      </svg>
+                                      <span class="text-sm font-medium">Evaluation</span>
+                                  </div>
+                                </a>
+
+                                <!-- <a href="/objects/hr/prerequests" t-att-class="requests_visibility">
+                                  <div class="bg-white p-4 rounded-lg shadow-sm flex flex-col items-center justify-center aspect-square hover:bg-gray-50 transition-colors cursor-pointer">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book h-8 w-8 mb-2 text-purple-600">
+                                        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"></path>
+                                      </svg>
+                                      <span class="text-sm font-medium">Leave requests</span>
+                                  </div>
+                                </a> -->
+                                <!-- /objects/evaluation -->
+                              </div>
+
+                              <!-- <div t-att-class="'bg-white p-6 rounded-lg shadow-sm '+requests_visibility">
+                                <h3 class="text-lg font-semibold mb-4">Leave Requests</h3>
+                                <div class="space-y-4 w-full">
+                                    <div class="w-full">
+                                      <div class="mb-2 w-full">
+                                          <div class="w-full">
+                                            <span class="text-sm w-full">
+                                                <a href="/objects/hr/prerequests" class="text-sm">View All Requests</a>
+                                            </span>
+                                          </div>
+                                      </div>
+                                    </div>
+                                </div>
+                              </div> -->
+
+                            <div t-att-class="'bg-white p-6 rounded-lg shadow-sm ' + requests_visibility">
+                                <h3 class="text-lg font-semibold mb-4">Leave Requests</h3>
+                                <div class="space-y-4 w-full">
+                                    <div class="w-full">
+                                        <div class="mb-2 w-full">
+                                            <div class="w-full flex items-center justify-between">
+                                                <span class="text-sm">
+                                                    <a href="/objects/hr/prerequests" class="text-sm">View All Requests</a>
+                                                </span>
+                                                <span t-if="pre_request_count > 0" class="ml-2 inline-flex items-center justify-center w-5 h-5 text-sm font-bold text-white bg-red-500 rounded-full"><span t-esc="pre_request_count"/></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                          </div>
+                          <div class="lg:w-3/4 flex gap-6 max-sm:w-full max-sm:flex-col">
+                              <div class="w-2/3 max-sm:w-full">
+                                <div class="bg-white p-6 rounded-lg shadow-sm">
+                                    <div class="flex justify-between items-center mb-4 max-sm:flex-col mb-8">
+                                      <h2 class="text-lg font-semibold max-sm:mb-8">Checked In Employees (<t t-esc="checked_in_count"/>)</h2>
+                                      <div class="flex gap-2">
+                                        <a href="/objects/hr/home?type_filter=home"><button  t-att-class="home_color+' px-3 py-1 rounded-full text-sm'">Home</button></a>
+                                        <a href="/objects/hr/home?type_filter=office"><button  t-att-class="office_color+' px-3 py-1 rounded-full text-sm'">Office</button></a>
+                                        <a href="/objects/hr/home?type_filter=both"><button  t-att-class="both_color+' px-3 py-1 rounded-full text-sm'">Both</button></a>
+                                      </div>
+                                    </div>
+                                    <!-- max-h-[600px] overflow-y-auto -->
+                                    <div class="space-y-3">
+                                      <t t-foreach="attendance" t-as="attend" t-key="attend.id">
+                                          <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg">
+                                              
+                                              <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-medium"><t t-esc="attend['symbol']"/></div>
+                                              <!-- <div t-if="not attend['employee_id'].image_1920" class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-medium"><t t-esc="attend['symbol']"/></div>
+                                              <img t-if="attend['employee_id'].image_1920"
+                                                  t-att-src="'data:image/png;base64,%s' % attend['employee_id'].image_1920.decode('utf-8')"
+                                                  class="w-8 h-8 rounded-full object-cover object-center" />                                               -->
+
+                                              <span class="flex-grow"><t t-esc="attend['employee']"/></span>
+                                              <span t-if="attend['checked_status'] == 'checked_out' and not attend['employee_id'].has_permission">checked out</span>
+                                              <span t-if="attend['employee_id'].has_permission">Break</span>
+
+                                              <svg t-if="attend['location'] == 'home' and attend['checked_status'] == 'checked_in'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house h-4 w-4 text-gray-500">
+                                                <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                                                <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                              </svg>
+                                              <svg t-if="attend['location'] == 'office' and attend['checked_status'] == 'checked_in'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building2 h-4 w-4 text-gray-500">
+                                                <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
+                                                <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path>
+                                                <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path>
+                                                <path d="M10 6h4"></path>
+                                                <path d="M10 10h4"></path>
+                                                <path d="M10 14h4"></path>
+                                                <path d="M10 18h4"></path>
+                                              </svg>
+                                          </div>                                        
+                                      </t>
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="w-1/3 space-y-6 max-sm:w-full">
+                                <div class="bg-white p-6 rounded-lg shadow-sm">
+                                    <h2 class="text-lg font-semibold mb-4">Employees on Leave</h2>
+                                    <div class="space-y-3">
+                                      <t t-foreach="leave" t-as="l" t-key="l.id">
+                                        <div class="flex flex-col gap-1 p-2 hover:bg-gray-50 rounded-lg">
+                                            <div class="flex items-center gap-3">
+
+                                              <div class="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-sm font-medium"><t t-esc="l['symbol']"/></div>
+                                              <!-- <div t-if="not l['employee_id'].image_1920" class="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-sm font-medium"><t t-esc="l['symbol']"/></div>
+                                              <img t-if="l['employee_id'].image_1920"
+                                                  t-att-src="'data:image/png;base64,%s' %  l['employee_id'].image_1920.decode('utf-8')"
+                                                  class="w-8 h-8 rounded-full object-cover object-center" />                                               -->
+
+
+                                              <span><t t-esc="l['employee']"/></span>
+                                            </div>
+                                            <div class="text-sm text-gray-500 ml-11"><t t-esc="l['date_range']"/></div>
+                                        </div>                                        
+                                      </t>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-6 rounded-lg shadow-sm">
+                                    <h2 class="text-lg font-semibold mb-4">Absent Employees</h2>
+                                    <div class="space-y-3">
+                                      <t t-foreach="absent" t-as="ab" t-key="ab.id">
+                                        <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg">
+                                            <div class="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-sm font-medium"><t t-esc="ab['symbol']"/></div>
+                                            <!-- <div t-if="not ab['employee_id'].image_1920" class="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-sm font-medium"><t t-esc="ab['symbol']"/></div>
+                                            <img t-if="ab['employee_id'].image_1920"
+                                                t-att-src="'data:image/png;base64,%s' % ab['employee_id'].image_1920.decode('utf-8')"
+                                                class="w-8 h-8 rounded-full object-cover object-center" />                                               -->
+                                            <span><t t-esc="ab['name']"/></span>
+                                        </div>                                        
+                                      </t>
+                                    </div>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                  </main>
+              </div>
+            </div>
+                
+        </div>
+
+
+        <div id="checkoutconfirmation" class="fixed inset-0 bg-gray-500/75 bg-opacity-50 flex items-center justify-center z-50 hidden">
+          <form action="/objects/hr/check-in-out" method="POST" class="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg">
+            <div>
+              <h2 class="text-xl font-semibold mb-4">Checkout</h2>
+              <p class="mb-4">Are you sure to checkout?</p>
+
+              <div class="flex items-center gap-2 mb-4" >
+                <textarea required="1" id="feedback" name="feedback"
+                  class="w-full px-4 py-2 border border-red-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  rows="4"
+                  value=""
+                  placeholder="Write your Feedback here..."></textarea>
+                  
+              </div>
+
+
+              <div class="text-right">
+                <button id="checkoutmodal" type="button" class="bg-red-500 text-white px-4 py-2 rounded-4">Cancel</button>
+                <button id="closeModalBtn" type="submit" class="bg-primary text-white px-4 py-2 rounded-4 shadow-sm">Checkout</button>
+              </div>
+            </div>
+          </form>
+        </div>          
+
+
+        <div id="changepasswordform" class="fixed inset-0 bg-gray-500/75 bg-opacity-50 flex items-center justify-center z-50 hidden">
+          <form action="/objects/change/password" method="POST" class="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg">
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+            <div>
+              <h2 class="text-xl font-semibold mb-4">Change Password</h2>
+              <div class="flex items-center gap-2 mb-4" >
+                <input required="1" id="passwordtext" name="password"
+                  class="w-full px-4 py-2 border border-red-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  rows="4"
+                  value=""
+                  type="password"
+                  placeholder="Enter new password ..."></input>                  
+              </div>
+              <div class="text-right">
+                <button id="changepassmodel" type="button" class="bg-red-500 text-white px-4 py-2 rounded-4">Cancel</button>
+                <button id="closechangepassword" type="submit" class="bg-primary text-white px-4 py-2 rounded-4 shadow-sm">Change Password</button>
+              </div>
+            </div>
+          </form>
+        </div>          
+
+
+
+        </t>
+    </template>
+
+</odoo>

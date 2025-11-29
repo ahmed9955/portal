@@ -1,0 +1,70 @@
+
+<odoo>
+    <template id="objects_assignments_portal_id" name="Leaves">
+        <t t-call="portal.portal_layout">
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-gauge@4.0.0/dist/chartjs-chart-gauge.min.js"></script>
+
+        <div id="root">
+          <div class="flex min-h-screen w-full flex-col">
+              <main class="odoo-content bg-gray-50 flex-grow">
+                <div class="bg-white border-b">
+                    <div class="container py-4">
+                      <div class="flex items-center gap-2 text-sm">
+                          <a class="text-blue-600 hover:underline flex items-center gap-1" href="/">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left h-4 w-4">
+                                <path d="m15 18-6-6 6-6"></path>
+                            </svg>
+                            Home
+                          </a>
+                          <a class="text-blue-600 hover:underline flex items-center gap-1" href="/objects/hr/assignments">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left h-4 w-4">
+                                <path d="m15 18-6-6 6-6"></path>
+                            </svg>
+                            Assignements
+                          </a>
+                      </div>
+                    </div>
+                </div>
+                <div class="container py-6">
+                    
+                    <div class="rounded-xl border bg-card text-card-foreground shadow">
+                      <div class="flex flex-col space-y-1.5 p-6">
+                          <h3 class="font-semibold leading-none tracking-tight">Assignements</h3>
+                      </div>
+                      <div class="p-6 pt-0">
+                          <div class="relative w-full overflow-auto">
+                            <table class="w-full caption-bottom text-sm">
+                                <thead class="[&amp;_tr]:border-b">
+                                  <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                      <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Project</th>
+                                      <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">From</th>
+                                      <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">To</th>
+                                      <th class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]">Utilization</th>
+                                  </tr>
+                                </thead>
+                                <tbody class="[&amp;_tr:last-child]:border-0">
+                                  <t t-foreach="assignments" t-as="assignment" t-key="assignment.id">
+                                      <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                          <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]"><t t-esc="assignment['project']"/></td>
+                                          <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]"><t t-esc="assignment['from']"/></td>
+                                          <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]"><t t-esc="assignment['to']"/></td>
+                                          <td class="p-2 align-middle [&amp;:has([role=checkbox])]:pr-0 [&amp;>[role=checkbox]]:translate-y-[2px]"><t t-esc="assignment['utilization']"/></td>
+                                      </tr>                                    
+                                  </t>
+                                </tbody>
+                            </table>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+              </main>
+          </div>
+        </div>
+
+                            
+        </t>
+    </template>
+</odoo>
